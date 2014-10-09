@@ -1,0 +1,10 @@
+# Introduction #
+
+The supervision-scripts project is an attempt to combine all of the 
+needed pieces to allow a single set of service definitions be used under 
+daemontools/runit/s6.
+
+At this moment in time, it is a placeholder as the details are worked out.
+
+If you have questions, please contact the project owner directly for a 
+faster response.
