@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# a do-nothing finish script, suitable for use as a NOOP
+exit 0
+

@@ -1,0 +1,15 @@
+#!/bin/sh
+exec 2>&1
+
+# determine our parent's name
+SVNAME=$( basename $( echo `pwd` | sed 's/log//' ) )
+
+# if the logger command is available, attempt to use it.
+#[ -f /usr/bin/logger ] && exec /usr/bin/logger
+
+# bring up svlogd as a default, logging into a subdirectory
+# that has the parent's name.
+[ -d /var/log/$SVNAME ] || mkdir -p /var/log/$SVNAME ; chown :adm /var/log/$SVNAME
+[ -d main ] || ln -s /var/log/$SVNAME main
+exec chpst /usr/bin/svlogd -tt main
+

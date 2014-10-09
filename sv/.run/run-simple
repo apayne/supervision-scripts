@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# redirect stderr to stdout...
+exec 2>&1
+
+# the daemon's name is the name of the script
+DAEMON=$( basename $( pwd ) )
+
+# attempt to load any Debian-specific environment
+# settings from a control file.
+[ -f /etc/defaults/$DAEMON ] && . /etc/defaults/$DAEMON
+
+# if we have a set of daemon-specific options
+# required to background the process, then load
+# them from a local option file into DAEMONOPTS.
+DAEMONOPTS=""
+PRELAUNCH=""
+[ -f ./options ] && . ./options
+
+exec $PRELAUNCH $DAEMON $DAEMONOPTS
