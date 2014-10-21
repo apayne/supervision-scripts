@@ -10,7 +10,7 @@ daemontools/runit/s6.  These templates follow a general format that allows them 
 
 * When possible, logging will conform to the framework that the script is being used in.  Each framework has a slightly different take on logging but they also come with their own tools and processes.  Using the correct logger for the correct environment then becomes important.
 
-When possible, and time permitting, additional framework-specific support will be added.  These items typically do not impact the other frameworks, so they can co-exist side by side.
+* When possible, and time permitting, additional framework-specific support will be added.  These items typically do not impact the other frameworks, so they can co-exist side by side.
 
 * When possible, common activities will use templates instead of actual code, reducing development time, increasing code accuracy, and reducing potential bugs by reducing code surface.
 
