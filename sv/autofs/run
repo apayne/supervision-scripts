@@ -1,0 +1,5 @@
+#!/bin/sh
+# This script was borrowed from the runit-for-lfs project.
+[ -f /etc/sysconfig/autofs ] && . /etc/sysconfig/autofs
+[ -n "$TIMEOUT" ] && daemonoptions="--timeout=$TIMEOUT $daemonoptions"
+exec /usr/sbin/automount -f $daemonoptions >/dev/null 2>&1
