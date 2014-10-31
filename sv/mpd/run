@@ -1,0 +1,14 @@
+#!/bin/sh
+exec 2>&1
+SVNAME=$(basename `pwd`)
+
+# configuration file is required
+[ -f /etc/mpd.conf ] || exit 1
+
+# ensure a run directory exists
+if [ ! -d /var/run/$SVNAME ] ; then
+  mkdir -p /var/run/$SVNAME
+  chown mpd /var/run/$SVNAME
+fi
+
+exec chpst -umpd /usr/bin/mpd --no-daemon --stderr /etc/mpd.conf
