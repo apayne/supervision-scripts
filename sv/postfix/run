@@ -1,0 +1,5 @@
+#!/bin/sh
+# This script was borrowed from the runit-for-lfs project.
+exec 2>&1
+/usr/sbin/postfix check || exit 1
+exec /usr/lib/postfix/master
