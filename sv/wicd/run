@@ -1,0 +1,7 @@
+#!/bin/sh
+exec 2>&1
+
+# start dbus as dependency
+sv start dbus || exit 1
+
+exec chpst -P -U root:netdev /usr/sbin/wicd -f -e -o
