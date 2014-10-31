@@ -1,0 +1,6 @@
+#!/bin/sh
+# This script was borrowed from the runit-for-lfs project.
+MEM="`head -1 ./env/MEM`"
+CHROOT="`head -1 ./env/CHROOT`"
+exec softlimit -m "${MEM}" \
+  named -u bind -t "${CHROOT}" -g 2>&1
