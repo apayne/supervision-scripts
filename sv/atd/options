@@ -1,0 +1,2 @@
+DAEMONOPTS="-f -d"
+PRELAUNCH=""
