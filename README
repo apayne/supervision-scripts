@@ -1,18 +1,13 @@
 # Introduction #
 
-The supervision-scripts project is an attempt to combine all of the 
-needed pieces to allow a single set of service definitions be used under 
-daemontools/runit/s6.  These templates follow a general format that allows them to be used in those frameworks.  The target environment is Debian stable.
+The supervision-scripts project is an attempt to combine all of the needed pieces to allow a single set of process management definitions be used under daemontools/runit/s6.  These templates follow a general format that allows them to be used in those frameworks.  The target environment is Debian stable.
 
 # Features #
 
-* When possible, and time permitting, retroactive support for SysV init scripts will be provided.  Runit does provide a hook for this by creating a symlink of /etc/init.d/(service) back to the runit binary.  TODO: find out what daemontools and s6 provide, and if they will support this feature.
-
 * When possible, logging will conform to the framework that the script is being used in.  Each framework has a slightly different take on logging but they also come with their own tools and processes.  Using the correct logger for the correct environment then becomes important.
 
-* When possible, and time permitting, additional framework-specific support will be added.  These items typically do not impact the other frameworks, so they can co-exist side by side.
+* When possible, additional framework-specific support will be added.  These items typically do not impact the other frameworks, so they can co-exist side by side.
 
 * When possible, common activities will use templates instead of actual code, reducing development time, increasing code accuracy, and reducing potential bugs by reducing code surface.
 
-If you have questions, please contact the project owner directly for a 
-faster response.
+If you have questions, please contact the project owner directly for a faster response.
