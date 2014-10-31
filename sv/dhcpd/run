@@ -1,0 +1,4 @@
+#!/bin/sh
+# This script was borrowed from the runit-for-lfs project.
+exec 2>&1
+exec dhcpd -f -d -cf ./config eth0
