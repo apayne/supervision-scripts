@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# redirect stderr to stdout
+exec 2>&1
+
+# support Debian init.d behavior for missing services
+[ -x /usr/sbin/kerneloops ] || exit 1
+
+# support Debian environment variables
+[ -e /etc/sysconfig/kerneloops ] && . /etc/sysconfig/kerneloops
+
+exec /usr/sbin/kerneloops --no-daemon
+
