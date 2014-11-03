@@ -16,6 +16,14 @@
 # which is passed into the local ./options file at
 # runtime.  This may include such arcane things as baud rate, etc.
 
+# to ensure that all of the standard commands
+# of daemontools are supported, intercept the
+# path and give our local copy priority.  All
+# of the symlinks in .bin point to their
+# equivalent in whatever framework is installed,
+# ensuring correct behavior.
+PATH=../.bin:$PATH
+
 # the getty's name is the name of the directory
 SOMEGETTY=$( basename $( pwd ) )
 
