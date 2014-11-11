@@ -1,0 +1,35 @@
+rm envdir && \
+ ln -s /usr/bin/envdir ./envdir && \
+  echo "$0: envdir reset"
+
+rm envuidgid && \
+ ln -s /usr/bin/envuidgid ./envuidgid && \
+  echo "$0: envuidgid reset"
+
+rm fghack && \
+ ln -s /usr/bin/fghack ./fghack && \
+  echo "$0: fghack reset"
+
+rm pgrphack && \
+ ln -s /usr/bin/pgrphack ./pgrphack && \
+  echo "$0: pgrphack reset"
+
+rm setlock && \
+ ln -s /usr/bin/setlock ./setlock && \
+  echo "$0: setlock reset"
+
+rm setuidgid && \
+ ln -s /usr/bin/setuidgid ./setuidgid && \
+  echo "$0: setuidgid reset"
+
+rm softlimit && \
+ ln -s /usr/bin/softlimit ./softlimit && \
+  echo "$0: softlimit reset"
+
+rm tai64n && \
+ ln -s /usr/bin/tai64n ./tai64n && \
+  echo "$0: tai64n reset"
+
+rm tai64nlocal && \
+ ln -s /usr/bin/tai64nlocal ./tai64nlocal && \
+  echo "$0: tai64nlocal reset"
