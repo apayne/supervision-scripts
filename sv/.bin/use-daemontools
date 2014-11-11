@@ -1,3 +1,5 @@
+#!/bin/sh
+
 rm envdir && \
  ln -s /usr/bin/envdir ./envdir && \
   echo "$0: envdir reset"
