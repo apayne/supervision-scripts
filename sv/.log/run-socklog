@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# A simple script for setting up one of three different variations on
+# the socklog service.
+
+# Similar to how ttys are handled, the type of service is specified in
+# the name.  Example: for a traditional *nix style /dev/log, you 
+# would create a sv/socklog-unix, with sv/socklog-unix/run being
+# a symlink back to this script.
+
+exec 2>&1
+
+# intercept calls to the framework
+PATH=../.bin:$PATH
+
+# determine our parent's name
+SVNAME=$( basename $( echo `pwd` | sed 's/log//' ) )
+
+# split the socklog mode from the name
+LOGMODE=$(echo $SVNAME | sed 's/-/ /' | awk '{ print $2 }' )
+
+# assign a sensical default
+case $LOGMODE
+  unix) LOGARGS="/dev/log"
+  inet) LOGARGS="127.0.0.1 514"
+  ucspi) LOGARGS=""
+esac
+[ -f ./options ] && . ./options]
+exec /usr/bin/socklog $LOGMODE $LOGARGS
