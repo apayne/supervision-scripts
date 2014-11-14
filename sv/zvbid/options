@@ -1,0 +1,2 @@
+DAEMONOPTS="-nodetach"
+PRELAUNCH=""
