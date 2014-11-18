@@ -1,0 +1,3 @@
+#!/bin/sh
+DAEMONOPTS="-d -f /etc/mnidlna.conf -P /run/minidlna/minidlna.pid"
+PRELAUNCH="setuidgid minidlna"
