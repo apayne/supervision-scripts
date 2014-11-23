@@ -1,2 +1,2 @@
-DAEMONOPTS="-f -s -c /etc/and/conf -d /etc/and.priorities"
+DAEMONOPTS="-f -s"
 PRELAUNCH=""
