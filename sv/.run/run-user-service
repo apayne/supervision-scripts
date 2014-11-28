@@ -11,6 +11,7 @@ exec 2>&1
 # of the symlinks in .bin point to their
 # equivalent in whatever framework is installed,
 # ensuring correct behavior.
+
 PATH=../.bin:$PATH
 
 # determine the supervision scanning process along with the user name
@@ -34,9 +35,13 @@ chown $THISUSER ./supervise/*
 [ $SVSCAN = 'svscan' ] && SVOPTS=""
 
 # runit
-[ $SVSCAN = 'runsvdir' ] && SVOPTS="-P"
+# NOTE: SVOPTS is conditional on the supervise directory being adjusted
+# so that a failure in adjustment prevents launch (which would fail anyways)
+[ $SVSCAN = 'runsvdir' ] && chmod 755 ./supervise && chown $THISUSER ./supervise/* && SVOPTS="-P"
 
 # s6
+# NOTE: the maximum limit has been raised to 1000 processes to
+# match the other frameworks
 [ $SVSCAN = 's6-svscan' ] && SVOPTS="-c 1000"
 
 # launch
