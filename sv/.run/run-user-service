@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# A minimalist user-controlled service launch script.
+
+# shunt all error logging to stdout
+exec 2>&1
+
+# to ensure that all of the standard commands
+# of daemontools are supported, intercept the
+# path and give our local copy priority.  All
+# of the symlinks in .bin point to their
+# equivalent in whatever framework is installed,
+# ensuring correct behavior.
+PATH=../.bin:$PATH
+
+# determine the supervision scanning process along with the user name
+SOMESUPER=$( basename $( pwd ) )
+SVSCAN=$(echo $SOMESUPER | sed 's/-/ /' | awk '{ print $1 }' )
+THISUSER=$(echo $SOMESUPER | sed 's/-/ /' | awk '{ print $2 }' )
+
+# framework-specific dependency: make runit's supervision directory
+# accessable to the user that will control the service
+chmod 755 ./supervise
+chown $THISUSER ./supervise/*
+
+# apply framework-specific options
+$SVOPTS=""
+[ $SVSCAN = 'runsvdir' ] && SVOPTS="-P"
+
+# launch
+exec setuidgid $THISUSER $SVSCAN $SVOPTS /home/$THISUSER/service
