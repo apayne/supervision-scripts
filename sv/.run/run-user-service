@@ -23,9 +23,21 @@ THISUSER=$(echo $SOMESUPER | sed 's/-/ /' | awk '{ print $2 }' )
 chmod 755 ./supervise
 chown $THISUSER ./supervise/*
 
-# apply framework-specific options
-$SVOPTS=""
+# apply framework-specific options.
+# daemontools: uses svscan, does not take arguments
+# runit: uses runsvdir, takes a single process group argument
+# s6: uses s6-svscan, takes up to two arguments.  The variable
+# SVOPTS is intentionally left undefined as we want the script
+# to fail for a framework name that is not supported.
+
+# daemontools
+[ $SVSCAN = 'svscan' ] && SVOPTS=""
+
+# runit
 [ $SVSCAN = 'runsvdir' ] && SVOPTS="-P"
+
+# s6
+[ $SVSCAN = 's6-svscan' ] && SVOPTS="-c 1000"
 
 # launch
 exec setuidgid $THISUSER $SVSCAN $SVOPTS /home/$THISUSER/service
