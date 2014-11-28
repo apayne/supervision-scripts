@@ -1,0 +1,2 @@
+PRELAUNCH="pgrphack " 
+DAEMONOPTS="-D -f /etc/dircproxyrc" 
