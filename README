@@ -65,13 +65,16 @@ That's it!  The definitions are ready to use.
 ### Definitions loop over and over
 This is typically the daemon/process exiting due to some error or configuration issue.  Check to make sure your service is installed correctly, and that any configuration files have the correct settings.
 
-### My simple service won't start
+### My newly-created / manually-created simple service won't start
 The requirements for run-simple are as follows:
 
 1. The definition directory name must *exactly* match the program name
 1. The program does not require the creation of lock files, pid directories, or run directories.
-1. You have set all of the needed command line options in the ./options file.
+1. The program does not depend on another service being already started, i.e. lightdm needs dbus to be running before it can run.
+1. You have set all of the needed command line options in the ./options file,* including any flags that prevent backgrounding or daemonization of the program.*  This is critical to ensuring that the program will be properly controlled.
 1. The ./options file is executable, i.e. 700 or 750 or 755.
+
+The `run-simple` script has been tested extensively and if you follow these guidelines, your service should start.
 
 ### My getty won't start
 The requirements for run-getty are as follows:
