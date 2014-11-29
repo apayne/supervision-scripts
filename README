@@ -1,13 +1,40 @@
 # Introduction #
 
-The supervision-scripts project is an attempt to combine all of the needed pieces to allow a single set of process management definitions be used under daemontools/runit/s6.  These templates follow a general format that allows them to be used in those frameworks.  The target environment is Debian stable.
+The good thing about DJB-styled supervision is that it is simple to understand and maintain.  The bad thing is that you typically have to write your own service entries to obtain it, and for a live system, the number of scripts to be written is in the dozens.  Writing the entries over and over becomes tedious and error-prone.  Wouldn't it be great if there was a nearly complete set of defintions pre-written for you?
+
+The supervision-scripts project is an attempt to combine all of the needed control scripts to allow a single set of process management definitions be used under daemontools/runit/s6.  Installation is through `cp` and configuration is done by running a single, small script, and setting a single symlink.
+
+The target environment is Debian stable, although the scripts could probably be adapted to other environments with very minor re-work.
 
 # Features #
+* Adapts to your framework.
 
-* When possible, logging will conform to the framework that the script is being used in.  Each framework has a slightly different take on logging but they also come with their own tools and processes.  Using the correct logger for the correct environment then becomes important.
+* Common activities use a template system instead of one-off scripts, reducing development time and potential bugs.
 
-* When possible, additional framework-specific support will be added.  These items typically do not impact the other frameworks, so they can co-exist side by side.
+* Simple services can be quickly defined with the `run-simple` template, if the daemon has minimal requirements.
 
-* When possible, common activities will use templates instead of actual code, reducing development time, increasing code accuracy, and reducing potential bugs by reducing code surface.
+* You can now move tty management into your framework with the `run-getty` template, which will instance your choice of `fgetty`, `mingetty` or `agetty` attached to a tty.
 
-If you have questions, please contact the project owner directly for a faster response.
+* Basic support for user-controlled services using a template named `run-user-service`.  The template detects the correct framework to use and creates a supervision instance under the control of a local user account.
+
+* Support scripts live in compact, hidden directories out of your way.
+
+* Because each framework prefers its own logging mechanism, the logging process has been abstracted so as to launch the appropriate mechanism.  This can be adjusted on a system-wide or per-process basis.
+
+* Where possible, framework-specific support has been added for writing your own control scripts.
+
+# Installation
+
+Currently, the target directory is assumed to be `/etc/sv`.  Use `mkdir -p /etc/sv ; cp -Rav sv/ /etc/sv/` to copy all of the required definitions and tools.
+
+There are currently four hidden directories that contain all of the templates and support scripts needed.  They are `.run`, `.log`, `.bin`, and `.finish`.  These four directories must be copied to your installation as `/etc/sv/.run`, `/etc/sv/.log`, `/etc/sv/.bin`, and `/etc/sv/.finish`, respectively.  They are required and cannot be omitted.
+
+To be written: a small installer that performs all of the copies and ensures correct permissions.
+
+# Configuration
+
+Run one of `use-daemontools`, `use-runit`, or `use-s6` to switch support between daemontools, runit, or s6 respectively.  The scripts are located in `/etc/sv/.bin` and must be run from within that directory.
+
+Logging by default is disabled.  You will need to go into the `/etc/sv/.log` directory and remove the symlink named `run`, and then redefine it to point to one of the logging scripts in that directory.  *This will become the default logging service system-wide, and requires that you have the appropriate logging service already installed.* 
+
+That's it!  The definitions are ready to use.
