@@ -85,3 +85,6 @@ The requirements for run-user-service are as follows:
 1. Do not attempt to inject the command options for the service, they will be automatically included.
 1. The appropriate svscan is installed and in the `$PATH`.  *This requirement may go away in a future version.*
 1. The definition directory name must be the framework-specific svscan program, a hyphen, and the user name.  Example: s6-svscan-juser will start `sv6-svscan -c1000 /home/juser/service`.  Example 2: runsvdir-juser will start `runsvdir -P /home/juser/service`.
+
+### My user-controlled svscan/runsvdir/s6-svscan can't be controlled, how do I fix this?
+You need to run the control program under the same user account, and *specify the user's service directory*.  If you don't specify it, the control program will attempt to work with the *system's* svscan and it most likely will not be happy about that.
