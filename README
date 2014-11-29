@@ -1,4 +1,4 @@
-# Introduction #
+## Introduction #
 
 The good thing about DJB-styled supervision is that it is simple to understand and maintain.  The bad thing is that you typically have to write your own service entries to obtain it, and for a live system, the number of scripts to be written is in the dozens.  Writing the entries over and over becomes tedious and error-prone.  **Wouldn't it be great if there was a set of definitions pre-written for you?  Imagine the time you would save by not writing all of them!**
 
@@ -6,7 +6,7 @@ The supervision-scripts project is an attempt to combine all of the needed contr
 
 The target environment is Debian stable, although the scripts could probably be adapted to other environments with very minor re-work.
 
-# Features #
+## Features #
 * Adapts to your framework.
 
 * Common activities use a template system instead of one-off scripts, reducing development time and potential bugs.
@@ -23,7 +23,7 @@ The target environment is Debian stable, although the scripts could probably be 
 
 * Support scripts live in compact, hidden directories out of your way.
 
-# Pre-Installation #
+## Pre-Installation #
 You must have the following present for a successful installation:
 
 * Access to your system as `root`.
@@ -38,7 +38,7 @@ You must have the following present for a successful installation:
 
 Despite the long list, the majority of installations will have this available.  If you have embedded needs, such as a read-only file system, please contact me.
 
-# Installation
+## Installation
 
 Currently, the target directory is assumed to be `/etc/sv`.
 
@@ -48,7 +48,7 @@ There are currently four hidden directories inside of `sv` that contain all of t
 
 *To be written: a small installer that performs all of the copies and ensures correct permissions.*
 
-# Configuration
+## Configuration
 
 Run one of `use-daemontools`, `use-runit`, or `use-s6` to switch support between daemontools, runit, or s6 respectively.  The scripts are located in `/etc/sv/.bin` and must be run as `root` from within that directory.  The scripts are very simple and can be easily audited if you are concerned about running setup as `root`.
 
@@ -56,16 +56,16 @@ Because logging is framework and system dependent, it is disabled by default, wi
 
 That's it!  The definitions are ready to use.
 
-# Common Issues
+## Common Issues
 
-## Definitions fail to start
+### Definitions fail to start
 * Is there an `untested` file present in the definition directory?  If so, the service you are attempting to start may not be fully tested.  If you see this, please send me details about your configuration and what you are attempting to start.
 * Make sure you copied the four hidden directories to the service definition directory.
 
-## Definitions loop over and over
+### Definitions loop over and over
 This is typically the daemon/process exiting due to some error or configuration issue.  Check to make sure your service is installed correctly, and that any configuration files have the correct settings.
 
-## My simple service won't start
+### My simple service won't start
 The requirements for run-simple are as follows:
 
 1. The definition directory name must *exactly* match the program name
@@ -73,13 +73,13 @@ The requirements for run-simple are as follows:
 1. You have set all of the needed command line options in the ./options file.
 1. The ./options file is executable, i.e. 700 or 750 or 755.
 
-## My getty won't start
+### My getty won't start
 The requirements for run-getty are as follows:
 
 1. The appropriate getty is installed and in the `$PATH`
 1. The definition directory name must be the getty program, a hyphen, and the tty to be controlled.  Example: mingetty-tty2 will start as `mingetty tty2`
 
-## My user-controlled svscan/runsvdir/s6-svscan won't start
+### My user-controlled svscan/runsvdir/s6-svscan won't start
 The requirements for run-user-service are as follows:
 
 1. Do not attempt to inject the command options for the service, they will be automatically included.
