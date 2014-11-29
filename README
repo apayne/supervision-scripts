@@ -68,13 +68,15 @@ This is typically the daemon/process exiting due to some error or configuration 
 ### My newly-created / manually-created simple service won't start
 The requirements for run-simple are as follows:
 
-1. The definition directory name must *exactly* match the program name
-1. The program does not require the creation of lock files, pid directories, or run directories.
-1. The program does not depend on another service being already started, i.e. lightdm needs dbus to be running before it can run.
+1. The definition directory name must *exactly* match the program name.  Example: you want to start and control a program with the name `/usr/bin/mynewserviced`, so you would create your definition at `/etc/sv/mynewserviced`.
+1. The `/etc/sv/(service)/run` file will be a symlink pointing to `../.run/run-simple`.
+1. The `run-simple` script *assumes* you have a `/etc/sv/(service)/log` entry for logging but does not *require* it.
+1. The program does not require the creation of directories, files, or file sockets.
+1. The program does not depend on another service being already started, i.e. lightdm needs dbus to be running before it can run, so lightdm *cannot* be a simple service definition.
 1. You have set all of the needed command line options in the ./options file,* including any flags that prevent backgrounding or daemonization of the program.*  This is critical to ensuring that the program will be properly controlled.
 1. The ./options file is executable, i.e. 700 or 750 or 755.
 
-The `run-simple` script has been tested extensively and if you follow these guidelines, your service should start.
+The `run-simple` script has been tested extensively and if you follow these guidelines, your service should start easily.  If your new service conflicts with any requirement listed above, it will not start; you will need to use a different template or write the `run` file by hand, sorry.
 
 ### My getty won't start
 The requirements for run-getty are as follows:
