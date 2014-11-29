@@ -1,6 +1,6 @@
 # Introduction #
 
-The good thing about DJB-styled supervision is that it is simple to understand and maintain.  The bad thing is that you typically have to write your own service entries to obtain it, and for a live system, the number of scripts to be written is in the dozens.  Writing the entries over and over becomes tedious and error-prone.  Wouldn't it be great if there was a nearly complete set of defintions pre-written for you?
+The good thing about DJB-styled supervision is that it is simple to understand and maintain.  The bad thing is that you typically have to write your own service entries to obtain it, and for a live system, the number of scripts to be written is in the dozens.  Writing the entries over and over becomes tedious and error-prone.  Wouldn't it be great if there was a nearly complete set of definitions pre-written for you?
 
 The supervision-scripts project is an attempt to combine all of the needed control scripts to allow a single set of process management definitions be used under daemontools/runit/s6.  Installation is through `cp` and configuration is done by running a single, small script, and setting a single symlink.
 
@@ -17,11 +17,26 @@ The target environment is Debian stable, although the scripts could probably be 
 
 * Basic support for user-controlled services using a template named `run-user-service`.  The template detects the correct framework to use and creates a supervision instance under the control of a local user account.
 
-* Support scripts live in compact, hidden directories out of your way.
-
 * Because each framework prefers its own logging mechanism, the logging process has been abstracted so as to launch the appropriate mechanism.  This can be adjusted on a system-wide or per-process basis.
 
 * Where possible, framework-specific support has been added for writing your own control scripts.
+
+* Support scripts live in compact, hidden directories out of your way.
+
+# Pre-Installation #
+You must have the following present for a successful installation:
+
+* Access to your system as `root`.
+* One of three appropriate frameworks must already be installed.  Only daemontools, runit, and s6 are supported at this time.  Support for nosh may come at a later date but there is no official support yet.
+* the file system that will hold the definitions **must** be able to support soft symlinks; this is fairly typical of most installs.
+* the file system must allow for read-write access of the `/etc/sv` directory, as some supervisors will create entries at that location.
+* access to a minimal shell.  Debian's use of `/bin/dash` as a `/bin/sh` replacement is acceptable.  *This may change in the future with the possible use of a non-shell based launcher, such as Skarnet's `execline`.*
+* `awk` accessible from your regular `$PATH`
+* `sed` accessible from your regular `$PATH`
+* `rm` accessible from your regular `$PATH`
+* `ln` accessible from your regular `$PATH`
+
+Despite the long list, the majority of installations will have this available.  If you have embedded needs, such as a read-only file system, please contact me.
 
 # Installation
 
@@ -35,6 +50,6 @@ To be written: a small installer that performs all of the copies and ensures cor
 
 Run one of `use-daemontools`, `use-runit`, or `use-s6` to switch support between daemontools, runit, or s6 respectively.  The scripts are located in `/etc/sv/.bin` and must be run from within that directory.
 
-Because logging is framework and system dependant, it is disabled by default, with the default logging script pointing to `/bin/true`.  You will need to go into the `/etc/sv/.log` directory and remove the symlink named `run`, and then redefine it to point to one of the logging scripts in that directory.  *This will become the default logging service system-wide, and requires that you have the appropriate logging service already installed.* 
+Because logging is framework and system dependent, it is disabled by default, with the default logging script pointing to `/bin/true`.  You will need to go into the `/etc/sv/.log` directory and remove the symlink named `run`, and then redefine it to point to one of the logging scripts in that directory.  *This will become the default logging service system-wide, and requires that you have the appropriate logging service already installed.* 
 
 That's it!  The definitions are ready to use.
