@@ -79,6 +79,9 @@ The requirements for run-getty are as follows:
 1. The appropriate getty is installed and in the `$PATH`
 1. The definition directory name must be the getty program, a hyphen, and the tty to be controlled.  Example: mingetty-tty2 will start as `mingetty tty2`
 
+### There is no getty log, why? -OR- I modified run-getty and now I can't log into a shell
+I/O redirection, which is required for logging, would defeat the purpose of a getty, which interacts with both stdin and stdout.  A logging program would intercept output meant for the user and you will be effectively locked out.  *Attempting to shunt any I/O in the script is just asking for trouble*; please stick with the existing script (which has been tested for mingetty as of this writing) and the choices of `agetty`, `mingetty`, or `fgetty` as your tty control programs.
+
 ### My user-controlled svscan/runsvdir/s6-svscan won't start
 The requirements for run-user-service are as follows:
 
