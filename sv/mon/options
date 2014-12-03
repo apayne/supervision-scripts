@@ -1,2 +1,2 @@
-DAEMONOPTS="-b /usr/lib/mon "
+DAEMONOPTS="-c /etc/mon/mon.cf -b /usr/lib/mon "
 PRELAUNCH="setuidgid mon "
