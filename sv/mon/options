@@ -1,2 +1,2 @@
-DAEMONOPTS=""
+DAEMONOPTS="-b /usr/lib/mon "
 PRELAUNCH="setuidgid mon "
