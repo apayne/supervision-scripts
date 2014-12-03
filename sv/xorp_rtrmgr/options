@@ -1,0 +1,2 @@
+DAEMONOPTS="-b /etc/xorp/config.boot -m /usr/lib/xorp/sbin -C /usr/lib/xorp/bin "
+PRELAUNCH=""
