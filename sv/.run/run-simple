@@ -16,7 +16,7 @@ DAEMON=$( basename $( pwd ) )
 
 # attempt to load any Debian-specific environment
 # settings from a control file.
-[ -f /etc/defaults/$DAEMON ] && . /etc/defaults/$DAEMON
+[ -f /etc/default/$DAEMON ] && . /etc/default/$DAEMON
 
 # if we have a set of daemon-specific options
 # required to background the process, then load
