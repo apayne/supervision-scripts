@@ -1,0 +1,2 @@
+DAEMONOPTS="-c /etc/ample/ample.conf -t "
+PRELAUNCH="setuidgid nobody "
