@@ -8,19 +8,10 @@ The target environment is Debian stable, although the scripts could probably be 
 
 ## Features #
 * Adapts to your framework.  Choose the original DJB daemontools, Gerrit Pape's runit, or Laurent Bercot's s6.
-
 * Common activities use a template system instead of one-off scripts, reducing development time and potential bugs.
-
 * Simple services can be quickly defined if the daemon has minimal requirements.
-
-* You can now move tty management into your framework.
-
-* Basic support for user-controlled services that creates a supervision instance under the control of a local user account.
-
-* Because each framework prefers its own logging mechanism, the logging process has been abstracted so as to launch the appropriate mechanism.  This can be adjusted on a system-wide or per-process basis.
-
-* Where possible, framework-specific support has been added for writing your own control scripts.
-
+* Mix-and-match ttys.  Choose between agetty, mingetty, or fgetty.
+* Basic integration for user-controlled services.  A user can have their own supervision instance under the control of their account, but attached to the master supervision tree.
 * Support scripts live in compact, hidden directories out of your way.
 
 ## Pre-Installation #
