@@ -4,7 +4,7 @@ The good thing about DJB-styled supervision is that it is simple to understand a
 
 The supervision-scripts project is an attempt to combine all of the needed control scripts to allow a single set of process management definitions be used under daemontools/runit/s6.  Installation is through `cp` and configuration is done by running a single, small script, and setting a single symlink.
 
-The target environment is Debian stable, although the scripts could probably be adapted to other environments with very minor re-work.
+The target environment is **Debian stable**, although the scripts could probably be adapted to other environments with very minor re-work.
 
 ## Features #
 * Adapts to your framework.  Choose the original DJB daemontools, Gerrit Pape's runit, or Laurent Bercot's s6.
