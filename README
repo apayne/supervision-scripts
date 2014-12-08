@@ -7,7 +7,7 @@ The supervision-scripts project is an attempt to combine all of the needed contr
 The target environment is Debian stable, although the scripts could probably be adapted to other environments with very minor re-work.
 
 ## Features #
-* Adapts to your framework.
+* Adapts to your framework.  Choose the original DJB daemontools, Gerrit Pape's runit, or Laurent Bercot's s6.
 
 * Common activities use a template system instead of one-off scripts, reducing development time and potential bugs.
 
