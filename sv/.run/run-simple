@@ -25,4 +25,4 @@ DAEMONOPTS=""
 PRELAUNCH=""
 [ -f ./options ] && . ./options
 
-envdir ./env exec $PRELAUNCH $DAEMON $DAEMONOPTS
+exec $PRELAUNCH $DAEMON $DAEMONOPTS
