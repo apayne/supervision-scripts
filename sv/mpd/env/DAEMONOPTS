@@ -1,0 +1,1 @@
+--no-daemon --stderr /etc/mpd.conf
