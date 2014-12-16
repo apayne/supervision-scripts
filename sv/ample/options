@@ -1,2 +1,0 @@
-DAEMONOPTS="-t -d1"
-#PRELAUNCH="setuidgid nobody "
