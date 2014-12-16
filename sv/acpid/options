@@ -1,2 +1,0 @@
-DAEMONOPTS=" -f -p /var/run/acpid.pid"
-PRELAUNCH=""
