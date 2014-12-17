@@ -1,12 +1,1 @@
-#! /bin/sh
-
-# redirect stderr into stdout
-exec 2>&1
-
-# support Debian init.d behavior for missing services
-[ -x /usr/sbin/smartd ] || exit 1
-
-# support Debian environment variables
-[ -r /etc/default/smartmontools ] && . /etc/default/smartmontools
-
-exec /usr/sbin/smartd --no-fork --pidfile /var/run/smartd.pid
+../.run/run-envdir
