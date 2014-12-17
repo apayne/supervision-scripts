@@ -1,2 +1,0 @@
-#!/bin/sh
-DAEMONOPTS="-P /var/run/gfmd.pid"
