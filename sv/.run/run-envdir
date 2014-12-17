@@ -3,14 +3,9 @@
 # redirect stderr to stdout...
 exec 2>&1
 
-# to ensure that all of the standard commands
-# of daemontools are supported, intercept the
-# path and give our local copy priority.  All
-# of the symlinks in .bin point to their
-# equivalent in whatever framework is installed,
-# ensuring correct behavior.
+# shim our support tools into the path
 PATH=../.bin:$PATH
 
-# the system default environment is defined in ../.env
-# $DAEMONOPTS and $PRELAUNCH are defined in the local ./env diretory
-exec envdir ../.env envdir ./env sh -c 'exec  $PRELAUNCH $DAEMON $DAEMONOPTS '
+# the system default environment is defined in ../.env,
+# $DAEMON, $DAEMONOPTS and $PRELAUNCH are defined in the local ./env diretory
+exec envdir ../.env envdir ./env sh -c 'exec $PRELAUNCH $DAEMON $DAEMONOPTS '
