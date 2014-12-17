@@ -1,12 +1,1 @@
-#! /bin/sh
-
-# support Debian init.d behavior for missing services
-[ -x "/usr/sbin/dovecot" ] || exit 1
-
-# support Debian environment variables
-[ -r /etc/default/dovecot ] && . /etc/default/dovecot
-
-# configuration file is required
-[ -f "/etc/dovecot/dovecot.conf" ] || exit 1
-
-exec /usr/sbin/dovecot -F -c /etc/dovecot/dovecot.conf
+../.run/run-envdir
