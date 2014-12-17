@@ -1,2 +1,0 @@
-DAEMONOPTS="--foreground --pid /var/run/radicale.pid"
-PRELAUNCH="chpst -u radicale:radicale "
