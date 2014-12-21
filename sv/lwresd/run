@@ -1,1 +1,12 @@
-../.run/run-envdir
+#!/bin/sh
+exec 2>&1
+
+# insert our shim in the PATH to capture framework commands
+PATH=../.bin:$PATH
+
+# build runtime directories, if needed
+[ -d /var/run/lwresd ] || mkdir -p /var/run/lwresd ; chown bind ; chmod 750 /var/run/lwresd
+[ -d /var/run/named ] || mkdir -p /var/run/named ; chown bind ; chmod 750 /var/run/lwresd
+
+# start the lightweight resolver in a new process group
+exec pgrphack lwresd -g -u bind
