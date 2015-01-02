@@ -1,0 +1,5 @@
+#!/bin/sh
+
+nisdomainname $(cat /etc/defaultdomain)
+exec 2>&1
+exec ypbind -debug -no-dbus
