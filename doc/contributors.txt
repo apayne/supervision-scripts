@@ -12,3 +12,5 @@ Service control scripts were donated graciously by James Powell <james4591 -AT- 
 the runit-for-lfs project, to be either used directly, modified, or studied for their 
 operation.  I'd like to give many thanks for the dontation from that project's team.
 
+Scripts for ypbind and autofs were improved by Luke Diamand (luke -AT- diamand.org).  Thank you for your help.
+
