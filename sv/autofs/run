@@ -1,11 +1,16 @@
 #!/bin/sh
 
+exec 2>&1
+
 test -f /etc/default/autofs && . /etc/default/autofs
 test -f /etc/sysconfig/autofs && . /etc/sysconfig/autofs
 test -n "$TIMEOUT" && daemonoptions="--timeout=$TIMEOUT $daemonoptions"
 
-# Check if NIS is up. If it's not installed, this will fail,
-# and run automount anyway to handle non-NIS based maps.
-sv check ypbind
+# Check if NIS is up. If it's not installed, this will fail but
+# then start the automounter anyway.
+if sv up ypbind ; then
+	sv check ypbind &&
+	test -n "$(ypwhich)" || (echo "waiting for ypbind" && exit 1)
+fi
 
 exec /usr/sbin/automount -f $daemonoptions >/dev/null 2>&1
