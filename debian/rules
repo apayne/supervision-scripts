@@ -1,0 +1,17 @@
+#!/usr/bin/make -f
+#DH_VERBOSE = 1
+
+TEMPLATES=/usr/share/supervision-scripts/sv
+INSTALL_DIR=$$(pwd)/debian/supervision-scripts/$(TEMPLATES)
+
+# see EXAMPLES in dpkg-buildflags(1) and read /usr/share/dpkg/*
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/default.mk
+
+# main packaging script based on dh7 syntax
+%:
+	dh $@ 
+
+override_dh_auto_install:
+	mkdir -p $(INSTALL_DIR)
+	cp -dr sv $(INSTALL_DIR)

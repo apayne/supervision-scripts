@@ -1,0 +1,19 @@
+Source: supervision-scripts
+Section: admin
+Priority: optional
+Maintainer: Luke Diamand <luke@diamand.org>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+Homepage: https://github.com/apayne/supervision-scripts.git
+#Vcs-Git: git://anonscm.debian.org/collab-maint/supervision-scripts.git
+#Vcs-Browser: http://anonscm.debian.org/?p=collab-maint/supervision-scripts.git;a=summary
+
+Package: supervision-scripts
+Architecture: all
+Suggests: runit | daemontools-run
+Description: Supervision scripts for daemontools, runit and s6
+ The supervision-scripts project is an attempt to combine all of the needed
+ control scripts to allow a single set of process management definitions to
+ be used under daemontools, runit or s6. Installation is through cp and
+ configuration is done by running a single, small script, and setting a single
+ symlink.
