@@ -20,10 +20,13 @@ SVNAME=$( basename $( echo `pwd` | sed 's/log//' ) )
 LOGMODE=$(echo $SVNAME | sed 's/-/ /' | awk '{ print $2 }' )
 
 # assign a sensical default
-case $LOGMODE
+case $LOGMODE in
   unix) LOGARGS="/dev/log"
+    ;;
   inet) LOGARGS="127.0.0.1 514"
+    ;;
   ucspi) LOGARGS=""
+    ;;
 esac
 [ -f ./options ] && . ./options]
 exec /usr/bin/socklog $LOGMODE $LOGARGS
