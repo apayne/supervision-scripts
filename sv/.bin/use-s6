@@ -35,3 +35,28 @@ rm tai64n && \
 rm tai64nlocal && \
  ln -s /usr/bin/s6-tai64nlocal ./tai64nlocal && \
   echo "$0: tai64nlocal reset"
+
+echo -n "$0: setting up framework-specific grammar, "
+echo "s6" > ../.env/FRAMEWORK
+echo -n "s6-svc" > ../.env/TOOLCMD
+echo -n "s6-svok" > ../.env/TOOLCHECK
+echo -n "s6-svstat" > ../.env/TOOLSTAT
+
+# Basic controls
+echo -n "-u" > ../.env/CMDUP
+echo -n "-d" > ../.env/CMDDOWN
+echo -n "-o" > ../.env/CMDONCE
+echo -n "" > ../.env/CMDCHECK
+
+# Unix-style signals
+echo -n "-p" > ../.env/CMDPAUSE
+echo -n "-c" > ../.env/CMDCONT
+echo -n "-h" > ../.env/CMDHUP
+echo -n "-a" > ../.env/CMDALRM
+echo -n "-i" > ../.env/CMDINT
+echo -n "-t" > ../.env/CMDTERM
+echo -n "-k" > ../.env/CMDKILL
+echo -n "-x" > ../.env/CMDEXIT
+
+echo "done."
+

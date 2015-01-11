@@ -35,3 +35,27 @@ rm tai64n && \
 rm tai64nlocal && \
  ln -s /usr/bin/tai64nlocal ./tai64nlocal && \
   echo "$0: tai64nlocal reset"
+
+echo -n "$0: setting up framework-specific grammar, "
+echo "daemontools" > ../.env/FRAMEWORK
+echo -n "svc" > ../.env/TOOLCMD
+echo -n "svok" > ../.env/TOOLCHECK
+echo -n "svstat" > ../.env/TOOLSTAT
+
+# Basic controls
+echo -n "-u" > ../.env/CMDUP
+echo -n "-d" > ../.env/CMDDOWN
+echo -n "-o" > ../.env/CMDONCE
+echo -n "" > ../.env/CMDCHECK
+
+# Unix-style signals
+echo -n "-p" > ../.env/CMDPAUSE
+echo -n "-c" > ../.env/CMDCONT
+echo -n "-h" > ../.env/CMDHUP
+echo -n "-a" > ../.env/CMDALRM
+echo -n "-i" > ../.env/CMDINT
+echo -n "-t" > ../.env/CMDTERM
+echo -n "-k" > ../.env/CMDKILL
+echo -n "-x" > ../.env/CMDEXIT
+
+echo "done."

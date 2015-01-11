@@ -1,0 +1,9 @@
+#!/bin/sh
+[ ! -d ../.env ] && echo "$0: aborting, please run this from the sv/.bin directory." && exit 1
+
+cd ../.env
+for ENVSETTING in *
+do
+  echo "$ENVSETTING=$(cat $ENVSETTING)"
+done
+cd ../.bin
