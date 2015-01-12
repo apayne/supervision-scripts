@@ -20,12 +20,13 @@ You must have the following present for a successful installation:
 * Access to your system as `root`.
 * One of three appropriate frameworks must already be installed.  Only daemontools, runit, and s6 are supported at this time.  Support for nosh may come at a later date but there is no official support yet.
 * The file system that will hold the definitions **must** be able to support soft symlinks; this is fairly typical of most installs.
-* The file system **must** allow for read-write access of the `/etc/sv` directory.
+* The file system **must** allow for read-write access of the `/etc/sv` directory.  The /etc/sv directory can be a symlink provided that the target supports read-write access.
 * Access to a minimal shell.  Debian's use of `/bin/dash` as a `/bin/sh` replacement is typical.  *This may change in the future with the possible use of a non-shell based launcher, such as Skarnet's `execline`.*
 * `awk` accessible from your regular `$PATH`
 * `sed` accessible from your regular `$PATH`
 * `rm` accessible from your regular `$PATH`
 * `ln` accessible from your regular `$PATH`
+* `basename' accessible from your regular `$PATH`
 
 Despite the long list, the majority of installations will have this available.  If you have embedded needs, such as a read-only file system, please contact me.
 
@@ -46,4 +47,3 @@ Run one of `use-daemontools`, `use-runit`, or `use-s6` to switch support between
 Because logging is framework and system dependent, it is disabled by default, with the default logging script pointing to `/bin/true`.  You will need to go into the `/etc/sv/.log` directory and remove the symlink named `run`, and then redefine it to point to one of the logging scripts in that directory.  *This will become the default logging service system-wide, and requires that you have the appropriate logging service already installed.* 
 
 That's it!  The definitions are ready to use.
-
