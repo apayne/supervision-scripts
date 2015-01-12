@@ -26,7 +26,7 @@ You must have the following present for a successful installation:
 * `sed` accessible from your regular `$PATH`
 * `rm` accessible from your regular `$PATH`
 * `ln` accessible from your regular `$PATH`
-* `basename' accessible from your regular `$PATH`
+* `basename` accessible from your regular `$PATH`
 
 Despite the long list, the majority of installations will have this available.  If you have embedded needs, such as a read-only file system, please contact me.
 
