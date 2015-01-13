@@ -1,32 +1,15 @@
 #!/bin/sh
 exec 2>&1
 
+# install framework tool shunt
+PATH=../.bin:$PATH
+
 # must have a valid procfs
 $( mountpoint -q /proc/ ) || exit 1
-
-DAEMONUSER=messagebus
-PIDDIR=/var/run/dbus
-
-# Source defaults file; edit that file to configure this script.
-PARAMS=""
-if [ -e /etc/default/dbus ]; then
-  . /etc/default/dbus
-fi
-
-# you will see dpkg turn around and toggle dbus on/off
-# via the SysV init.d script, which in turn fires
-# up Yet Another Instance, but if we spew a pid file,
-# it will keep the init.d script at bay...
-if [ ! -d $PIDDIR ]; then
-  mkdir -p $PIDDIR
-  chown $DAEMONUSER $PIDDIR
-  chgrp $DAEMONUSER $PIDDIR
-fi
 
 # create a unique identifier on each startup
 /usr/bin/dbus-uuidgen --ensure || exit 1
 
 # start the service
-exec chpst -U $DAEMONUSER -P /usr/bin/dbus-daemon --nofork --system $PARAMS
-
+exec envdir ../.env envdir ./env sh -c 'exec $PRELAUNCH $DAEMON $DAEMONOPTS '
 
