@@ -36,7 +36,11 @@ You must have the following present for a successful installation:
 
 Despite the long list, the majority of installations will have this available.  If you have embedded needs, such as a read-only file system, please contact me.
 
-*TODO: look at various user-lands and determine if the tools are present; perhaps draw up a small compatibility grid*
+*TODO: look at various user-lands and determine if the tools are present; perhaps draw up a small compatibility grid, see 
+BSD Userland http://www.bsd.org/unixcmds.html
+GNU Userland http://tldp.org/LDP/GNU-Linux-Tools-Summary/GNU-Linux-Tools-Summary.pdf
+Toybox http://www.landley.net/toybox/status.html 
+Busybox http://www.busybox.net/downloads/BusyBox.html, *
 
 ## Installation
 
