@@ -11,8 +11,8 @@ Development is done with Debian stable but **the scripts should work with most e
 * Common activities use a template system instead of one-off scripts, reducing development time and potential bugs.
 * Simple services can be quickly defined if the daemon has minimal requirements.
 * Mix-and-match ttys.  Choose between agetty, mingetty, or fgetty.
-* Basic integration for user-controlled services.  A user can have their own supervision instance under the control of their account, but attached to the master supervision tree.
 * Support scripts live in compact, hidden directories out of your way.
+* Optional integration for user-controlled services.  A user can have their own supervision instance under the control of their account, but attached to the master supervision tree.
 * Optional dependency handling (not enabled by default - see below for details)
 
 ## Pre-Installation #
@@ -88,6 +88,7 @@ This will start `s6-svscan` on /home/avery/service and any service definitions i
 This feature is meant as an option of last resort.  Enabling it should be considered carefully and with grave diligence.  Because of several requirements, the feature is not enabled by default.
 
 Here is what you gain:
+
 * Everything is already defined.  You don't lift a finger.
 * Service A needs service B, service B will start before service A
 * Service chain sequencing, where A needs B, and B needs C; C will start before B, and B before A
@@ -95,6 +96,7 @@ Here is what you gain:
 * Clear logging of failure modes due to issues with dependencies.  If A can't start because B won't, then A will complain about B's problems inside of A's log.
 
 Here is what you lose:
+
 * Enabling this feature on a system that has true dependency resolution will most assuredly break something.  You get to keep both pieces.
 * It will only apply to services that start after it has been enabled.  It is not retroactive.
 * You can no longer rename a service definition without renaming all of the links to `./needs` directories elsewhere.  Doing so will break dependency definitions.  I do not recommend this at all, and cannot support any issues surrounding this action.
