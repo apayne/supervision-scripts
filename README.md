@@ -104,6 +104,6 @@ Here is what you lose:
 So, in exchange for this convenience feature, you will have a policy decision set for you, you loose some choices, and some supervision guarantees may be much weaker.  It should only be used on systems that (a) do **not** already have dependency management and (b) in your use case, the desire to use the feature outweighs any costs.
 That being all said, you turn it on by doing this as `root` in a shell:
 
-    echo 1 > /etc/sv/.env/ENABLE_NEEDS
+    echo 1 > /etc/sv/.env/NEEDS_ENABLED
 
 Now you start your service.  That's it.  Scary, isn't it?
