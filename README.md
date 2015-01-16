@@ -91,7 +91,7 @@ Here is what you gain:
 * Everything is already defined.  You don't lift a finger.
 * Service A needs service B, service B will start before service A
 * Service chain sequencing, where A needs B, and B needs C; C will start before B, and B before A
-* Chains can be trees; it doesn't matter that A and B have chains that ultimate lead to C, because if C is running everything's ok.
+* Chains can be trees; it doesn't matter that A and B have chains that ultimately lead to C, because if C is running everything's ok.
 * Clear logging of failure modes due to issues with dependencies.  If A can't start because B won't, then A will complain about B's problems inside of A's log.
 
 Here is what you lose:
