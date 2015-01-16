@@ -44,7 +44,7 @@ Currently, the target directory is assumed to be `/etc/sv`.
 
 Use `mkdir -p /etc/sv ; cp -Rav sv/ /etc/sv/ ; cp -Rav sv/.* /etc/sv/` to copy all of the required definitions and tools.
 
-There are currently four hidden directories inside of `sv` that contain all of the templates and support scripts needed.  They are `sv/.run`, `sv/.log`, `sv/.bin`, and `sv/.finish`.  These four directories must be copied to your installation as `/etc/sv/.run`, `/etc/sv/.log`, `/etc/sv/.bin`, and `/etc/sv/.finish`, respectively.  They are required and cannot be omitted.
+There are currently five hidden directories inside of `sv` that contain all of the templates and support scripts needed.  They are `sv/.run`, `sv/.log`, `sv/.bin`, `sv/.env`, and `sv/.finish`.  These five directories *must* be copied to your installation as `/etc/sv/.run`, `/etc/sv/.log`, `/etc/sv/.bin`, `/etc/sv/.env`, and `/etc/sv/.finish`, respectively.  **They are required and cannot be omitted.**
 
 *To be written: a small installer that performs all of the copies and ensures correct permissions.*
 
