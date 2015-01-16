@@ -13,6 +13,7 @@ Development is done with Debian stable but **the scripts should work with most e
 * Mix-and-match ttys.  Choose between agetty, mingetty, or fgetty.
 * Basic integration for user-controlled services.  A user can have their own supervision instance under the control of their account, but attached to the master supervision tree.
 * Support scripts live in compact, hidden directories out of your way.
+* Optional dependency handling, which is not enabled by default.  In exchange for this convenience feature, you will have a policy decision set for you, you loose some choices, and some supervision guarantees may be much weaker.  It should only be used on systems that (a) do not already have dependency management and (b) in your use case, the desire to use the feature outweighs any costs.
 
 ## Pre-Installation #
 You must have the following present for a successful installation:
@@ -23,12 +24,19 @@ You must have the following present for a successful installation:
 * The file system **must** allow for read-write access of the `/etc/sv` directory.  The /etc/sv directory can be a symlink provided that the target supports read-write access.
 * Access to a minimal shell.  Debian's use of `/bin/dash` as a `/bin/sh` replacement is typical.  *This may change in the future with the possible use of a non-shell based launcher, such as Skarnet's `execline`.*
 * `awk` accessible from your regular `$PATH`
-* `sed` accessible from your regular `$PATH`
-* `rm` accessible from your regular `$PATH`
-* `ln` accessible from your regular `$PATH`
 * `basename` accessible from your regular `$PATH`
+* `cd` accessible from your regular `$PATH`, or as a built-in
+* `echo` accessible from your regular `$PATH`, or as a built-in
+* `ln` accessible from your regular `$PATH`
+* `ls` accessible from your regular `$PATH`, or as a built-in
+* `rm` accessible from your regular `$PATH`, or as a built-in
+* `sed` accessible from your regular `$PATH`
+* `test` accessible from your regular `$PATH`, or as a built-in
+* `wc` accessible from your regular `$PATH`, or as a built-in
 
 Despite the long list, the majority of installations will have this available.  If you have embedded needs, such as a read-only file system, please contact me.
+
+*TODO: look at various user-lands and determine if the tools are present; perhaps draw up a small compatibility grid*
 
 ## Installation
 
