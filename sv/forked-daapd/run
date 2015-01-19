@@ -1,7 +1,1 @@
-#! /bin/sh
-exec 2>&1
-
-# forked-daapd is dependant on avahi-daemon...
-sv start avahi-daemon || exit 1
-
-exec /usr/sbin/forked-daapd -f -P /var/run/forked-daapd.pid -c /etc/forked-daapd.conf
+../.run/run-envdir-depends
