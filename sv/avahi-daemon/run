@@ -1,13 +1,1 @@
-#!/bin/sh
-exec 2>&1
-
-# support Debian init.d behavior for missing services
-[ -x /usr/sbin/avahi-daemon ] || exit 1
-
-# start dbus as dependency
-sv start dbus || exit 1
-
-# support Debian environment variables
-[ -r /etc/default/avahi-daemon ] && . /etc/default/avahi-daemon
-
-exec chpst -P /usr/sbin/avahi-daemon -f /etc/avahi/avahi-daemon.conf
+../.run/run-envdir-depends
