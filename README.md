@@ -41,19 +41,19 @@ Despite the long list, the majority of installations will have these.  The grid 
 
 |Command  | GNU |[FreeBSD](https://www.freebsd.org/cgi/man.cgi) | [Toybox](http://landley.net/toybox/status.html) | [Busybox](http://www.busybox.net/downloads/BusyBox.html) |
 |         | :-: | :-: |  :-:   | :-:     |
-|awk      | ?   | Yes | *Pend* | Yes     |
+|awk      | Yes | Yes | *Pend* | Yes     |
 |basename | Yes | Yes |  Yes   | Yes     |
-|cd       | ?   | Yes | **No** | **No**  |
-|chmod    | ?   | Yes |  Yes   | Yes     |
-|chown    | ?   | Yes |  Yes   | Yes     |
-|echo     | ?   | Yes |  Yes   | Yes     |
-|ln       | ?   | Yes |  Yes   | Yes     |
-|ls       | ?   | Yes |  Yes   | Yes     |
-|mkdir    | ?   | Yes |  Yes   | Yes     |
-|rm       | ?   | Yes |  Yes   | Yes     |
-|sed      | ?   | Yes | *Pend* | Yes     |
-|test     | ?   | Yes | *Pend* | Yes     |
-|wc       | ?   | Yes |  Yes   | Yes     |
+|cd       | Yes | Yes | **No** | **No**  |
+|chmod    | Yes | Yes |  Yes   | Yes     |
+|chown    | Yes | Yes |  Yes   | Yes     |
+|echo     | Yes | Yes |  Yes   | Yes     |
+|ln       | Yes | Yes |  Yes   | Yes     |
+|ls       | Yes | Yes |  Yes   | Yes     |
+|mkdir    | Yes | Yes |  Yes   | Yes     |
+|rm       | Yes | Yes |  Yes   | Yes     |
+|sed      | Yes | Yes | *Pend* | Yes     |
+|test     | Yes | Yes | *Pend* | Yes     |
+|wc       | Yes | Yes |  Yes   | Yes     |
 
 Compatibility Grid Legend
 
