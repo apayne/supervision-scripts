@@ -23,37 +23,37 @@ You must have the following present for a successful installation:
 * The file system that will hold the definitions **must** be able to support soft symlinks; this is fairly typical of most installs.
 * The file system **must** allow for read-write access of the `/etc/sv` directory.  The /etc/sv directory can be a symlink provided that the target supports read-write access.
 * Access to a minimal shell.  Debian's use of `/bin/dash` as a `/bin/sh` replacement is typical.  *This may change in the future with the possible use of a non-shell based launcher, such as Skarnet's `execline`.*
-* `awk` accessible from your regular `$PATH`
-* `basename` accessible from your regular `$PATH`
-* `cd` accessible from your regular `$PATH`, or as a built-in
-* `chmod` accessible from your regular `$PATH`
-* `chown` accessible from your regular `$PATH`
-* `echo` accessible from your regular `$PATH`, or as a built-in
-* `ln` accessible from your regular `$PATH`
-* `ls` accessible from your regular `$PATH`, or as a built-in
-* `mkdir` accessible from your regular `$PATH`
-* `rm` accessible from your regular `$PATH`, or as a built-in
-* `sed` accessible from your regular `$PATH`
-* `test` accessible from your regular `$PATH`, or as a built-in
-* `wc` accessible from your regular `$PATH`, or as a built-in
+    * `awk`
+    * `basename`
+    * `cd`
+    * `chmod`
+    * `chown`
+    * `echo`
+    * `ln`
+    * `ls`
+    * `mkdir`
+    * `rm`
+    * `sed`
+    * `test`
+    * `wc`
 
 Despite the long list, the majority of installations will have these.  The grid below shows which tools are generally available, for each toolset.
 
-|Command  | GNU |[FreeBSD](https://www.freebsd.org/cgi/man.cgi) | [Toybox](http://landley.net/toybox/status.html) | [Busybox](http://www.busybox.net/downloads/BusyBox.html) |
-|         | :-: | :-: |  :-:   | :-:     |
-|awk      | Yes | Yes | *Pend* | Yes     |
-|basename | Yes | Yes |  Yes   | Yes     |
-|cd       | Yes | Yes | **No** | **No**  |
-|chmod    | Yes | Yes |  Yes   | Yes     |
-|chown    | Yes | Yes |  Yes   | Yes     |
-|echo     | Yes | Yes |  Yes   | Yes     |
-|ln       | Yes | Yes |  Yes   | Yes     |
-|ls       | Yes | Yes |  Yes   | Yes     |
-|mkdir    | Yes | Yes |  Yes   | Yes     |
-|rm       | Yes | Yes |  Yes   | Yes     |
-|sed      | Yes | Yes | *Pend* | Yes     |
-|test     | Yes | Yes | *Pend* | Yes     |
-|wc       | Yes | Yes |  Yes   | Yes     |
+| Command  | GNU |[FreeBSD](https://www.freebsd.org/cgi/man.cgi) | [Toybox](http://landley.net/toybox/status.html) | [Busybox](http://www.busybox.net/downloads/BusyBox.html) |
+| ---      | :-: | :-: |  :-:   | :-:     |
+| awk      | Yes | Yes | *Pend* | Yes     |
+| basename | Yes | Yes |  Yes   | Yes     |
+| cd       | Yes | Yes | **No** | **No**  |
+| chmod    | Yes | Yes |  Yes   | Yes     |
+| chown    | Yes | Yes |  Yes   | Yes     |
+| echo     | Yes | Yes |  Yes   | Yes     |
+| ln       | Yes | Yes |  Yes   | Yes     |
+| ls       | Yes | Yes |  Yes   | Yes     |
+| mkdir    | Yes | Yes |  Yes   | Yes     |
+| rm       | Yes | Yes |  Yes   | Yes     |
+| sed      | Yes | Yes | *Pend* | Yes     |
+| test     | Yes | Yes | *Pend* | Yes     |
+| wc       | Yes | Yes |  Yes   | Yes     |
 
 Compatibility Grid Legend
 
