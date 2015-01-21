@@ -37,7 +37,7 @@ You must have the following present for a successful installation:
 * `test` accessible from your regular `$PATH`, or as a built-in
 * `wc` accessible from your regular `$PATH`, or as a built-in
 
-Despite the long list, the majority of installations will have this available.  The grid below shows which user-land tools are available.
+Despite the long list, the majority of installations will have these.  The grid below shows which tools are generally available, for each toolset.
 
 |Command  | GNU |[FreeBSD](https://www.freebsd.org/cgi/man.cgi) | [Toybox](http://landley.net/toybox/status.html) | [Busybox](http://www.busybox.net/downloads/BusyBox.html) |
 |         | :-: | :-: |  :-:   | :-:     |
@@ -61,7 +61,7 @@ Compatibility Grid Legend
 * *No* The command is not shown in the list of available commands
 * Pend.  The command is scheduled to be added
 
-If you have embedded needs, such as a read-only file system, please contact me.
+Toybox is still undergoing heavy development and many missing or pending commands may become available in the near future.  If you have embedded needs, such as a read-only file system, please contact me.
 
 
 ## Installation
