@@ -26,28 +26,40 @@ You must have the following present for a successful installation:
 * `awk` accessible from your regular `$PATH`
 * `basename` accessible from your regular `$PATH`
 * `cd` accessible from your regular `$PATH`, or as a built-in
+* `chmod` accessible from your regular `$PATH`
+* `chown` accessible from your regular `$PATH`
 * `echo` accessible from your regular `$PATH`, or as a built-in
 * `ln` accessible from your regular `$PATH`
 * `ls` accessible from your regular `$PATH`, or as a built-in
+* `mkdir` accessible from your regular `$PATH`
 * `rm` accessible from your regular `$PATH`, or as a built-in
 * `sed` accessible from your regular `$PATH`
 * `test` accessible from your regular `$PATH`, or as a built-in
 * `wc` accessible from your regular `$PATH`, or as a built-in
 
-Despite the long list, the majority of installations will have this available.  
+Despite the long list, the majority of installations will have this available.  The grid below shows which user-land tools are available.
 
-|Command  | GNU |[BSD](http://www.bsd.org/unixcmds.html) | [Toybox](http://landley.net/toybox/status.html) | [Busybox](http://www.busybox.net/downloads/BusyBox.html) |
+|Command  | GNU |[FreeBSD](https://www.freebsd.org/cgi/man.cgi) | [Toybox](http://landley.net/toybox/status.html) | [Busybox](http://www.busybox.net/downloads/BusyBox.html) |
 |         | :-: | :-: |  :-:   | :-:     |
-|awk      | ?   | ?   |  ?     | ?       |
+|awk      | ?   | Yes |  Pend. | Yes     |
 |basename | Yes | Yes |  Yes   | Yes     |
-|cd       | ?   | ?   |  ?     | ?       |
-|echo     | ?   | ?   |  ?     | ?       |
-|ln       | ?   | ?   |  ?     | ?       |
-|ls       | ?   | ?   |  ?     | ?       |
-|rm       | ?   | ?   |  ?     | ?       |
-|sed      | ?   | ?   |  ?     | ?       |
-|test     | ?   | ?   |  ?     | ?       |
-|wc       | ?   | ?   |  ?     | ?       |
+|cd       | ?   | Yes | *No*   | *No*    |
+|chmod    | ?   | Yes |  Yes   | Yes     |
+|chown    | ?   | Yes |  Yes   | Yes     |
+|echo     | ?   | Yes |  Yes   | Yes     |
+|ln       | ?   | Yes |  Yes   | Yes     |
+|ls       | ?   | Yes |  Yes   | Yes     |
+|mkdir    | ?   | Yes |  Yes   | Yes     |
+|rm       | ?   | Yes |  Yes   | Yes     |
+|sed      | ?   | Yes |  Pend. | Yes     |
+|test     | ?   | Yes |  Pend. | Yes     |
+|wc       | ?   | Yes |  Yes   | Yes     |
+
+Compatibility Grid Legend
+
+* Yes The command is shown in the list of available commands
+* *No* The command is not shown in the list of available commands
+* Pend.  The command is scheduled to be added
 
 If you have embedded needs, such as a read-only file system, please contact me.
 
