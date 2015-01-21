@@ -23,6 +23,7 @@ You must have the following present for a successful installation:
 * The file system that will hold the definitions **must** be able to support soft symlinks; this is fairly typical of most installs.
 * The file system **must** allow for read-write access of the `/etc/sv` directory.  The /etc/sv directory can be a symlink provided that the target supports read-write access.
 * Access to a minimal shell.  Debian's use of `/bin/dash` as a `/bin/sh` replacement is typical.  *This may change in the future with the possible use of a non-shell based launcher, such as Skarnet's `execline`.*
+* The following commands must be present in your $PATH setting:
     * `awk`
     * `basename`
     * `cd`
