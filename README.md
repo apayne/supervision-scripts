@@ -34,13 +34,23 @@ You must have the following present for a successful installation:
 * `test` accessible from your regular `$PATH`, or as a built-in
 * `wc` accessible from your regular `$PATH`, or as a built-in
 
-Despite the long list, the majority of installations will have this available.  If you have embedded needs, such as a read-only file system, please contact me.
+Despite the long list, the majority of installations will have this available.  
 
-*TODO: look at various user-lands and determine if the tools are present; perhaps draw up a small compatibility grid, see 
-BSD Userland http://www.bsd.org/unixcmds.html
-GNU Userland http://tldp.org/LDP/GNU-Linux-Tools-Summary/GNU-Linux-Tools-Summary.pdf
-Toybox http://www.landley.net/toybox/status.html 
-Busybox http://www.busybox.net/downloads/BusyBox.html, *
+|Command  | GNU |[BSD](http://www.bsd.org/unixcmds.html) | [Toybox](http://landley.net/toybox/status.html) | [Busybox](http://www.busybox.net/downloads/BusyBox.html) |
+|         | :-: | :-: |  :-:   | :-:     |
+|awk      | ?   | ?   |  ?     | ?       |
+|basename | Yes | Yes |  Yes   | Yes     |
+|cd       | ?   | ?   |  ?     | ?       |
+|echo     | ?   | ?   |  ?     | ?       |
+|ln       | ?   | ?   |  ?     | ?       |
+|ls       | ?   | ?   |  ?     | ?       |
+|rm       | ?   | ?   |  ?     | ?       |
+|sed      | ?   | ?   |  ?     | ?       |
+|test     | ?   | ?   |  ?     | ?       |
+|wc       | ?   | ?   |  ?     | ?       |
+
+If you have embedded needs, such as a read-only file system, please contact me.
+
 
 ## Installation
 
