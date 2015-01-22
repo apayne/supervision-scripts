@@ -44,7 +44,7 @@ Despite the long list, the majority of installations will have these.  The grid 
 | ---      | :-: | :-: |  :-:   | :-:     |
 | awk      | Yes | Yes | *Pend* | Yes     |
 | basename | Yes | Yes |  Yes   | Yes     |
-| cd       | Yes | Yes | **No** | **No**  |
+| cd       | Shell | Shell | Shell | Shell  |
 | chmod    | Yes | Yes |  Yes   | Yes     |
 | chown    | Yes | Yes |  Yes   | Yes     |
 | echo     | Yes | Yes |  Yes   | Yes     |
@@ -61,6 +61,7 @@ Compatibility Grid Legend
 * Yes: The command is shown in the list of available commands
 * **No**: The command was not found and is not considered available until confirmed to exist.
 * *Pend*:  The command is scheduled to be added at some point.  For the present, it effectively is the same as **No**.
+* Shell: this is typically a built-in of the shell running the script.
 
 Toybox is still undergoing heavy development and many missing or pending commands may become available in the near future.  If you have embedded needs, such as a read-only file system, please contact me.
 
