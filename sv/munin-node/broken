@@ -1,6 +1,1 @@
-munin-node requires that you configure it manually via /etc/munin/munin-node.conf to not
-launch in the background.  However, the current version in Debian 7 continues to fork()
-itself and escape supervision, even with the backgrounding option set to zero.
-
-As such, it is not compatible with supervision, until the background switch can be 
-obeyed as intended.
+../.run/broken

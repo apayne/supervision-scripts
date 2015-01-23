@@ -10,6 +10,38 @@ exec 2>&1
 # shim our support tools into the path
 PATH=../.bin:$PATH
 
+# check for a broken definition and record the
+# response in the daemon's logging
+if test -f ./broken ; then
+  cat ./broken
+  exit 1
+fi
+
+# look for a user ID and store it if found
+T_UID=""
+if test -f ./env/T_UID ; then
+  T_UID=$( cat ./env/T_UID )
+fi
+
+# look for a group ID and store it if found
+T_GID=""
+if test -f ./env/T_GID ; then
+  T_GID=$( cat ./env/T_GID )
+fi
+
+# if a run-state directory is defined, then build it prior to launch
+if test -f ./env/STATEDIR ; then
+  RUNSTATEDIR=$( cat ./env/STATEDIR )
+  mkdir -p $RUNSTATEDIR
+  chmod 755 $RUNSTATEDIR
+  if test ! -z $T_UID ; then
+    chown $T_UID $RUNSTATEDIR
+  fi
+  if test ! -z $T_GID ; then
+    chgrp $T_GID $RUNSTATEDIR
+  fi
+fi
+
 # the system default environment is defined in ../.env,
 # $DAEMON, $DAEMONOPTS and $PRELAUNCH are defined in the local ./env diretory
 exec envdir ../.env envdir ./env sh -c 'exec $PRELAUNCH $DAEMON $DAEMONOPTS '

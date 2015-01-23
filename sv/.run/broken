@@ -1,0 +1,1 @@
+This daemon may have issues with normal operation without forking itself.  Because of this the definition will not launch until you change its configuration, and remove the ./broken file from its definition directory.  The launch will now abort.
