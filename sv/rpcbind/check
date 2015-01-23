@@ -1,0 +1,4 @@
+#!/bin/sh
+rpcinfo -p > /dev/null
+RESULT=$?
+return $RESULT
