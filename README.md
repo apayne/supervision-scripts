@@ -37,3 +37,5 @@ for details.)
 * Tenative plans for supporting freedt, daemontools-encore, nosh, and perp.
 * Tenative plans for supporting a choice between execline and /bin/sh.
 
+## License #
+Currently Licensed under MPL 2.0 minus the exclusion clause.  Once the project reaches a 0.2 release, I will move to a BSD/MIT style license.
