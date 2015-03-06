@@ -11,7 +11,7 @@ This is typically the daemon/process exiting due to some error or configuration 
 ### My newly-created / manually-created simple service won't start
 The requirements for run-sh are as follows:
 
-1. The `sv/(service)/run` file will be a symlink pointing to `../.run/run`.  This is by design, so that you can change the default launcher to suit your needs.  It is not recommended that you link to `.run/run-sh` directly unless you have specific requirements to use the shell-based launcher.
+1. The `sv/(service)/run` file will be a symlink pointing to `../.run/run`.  This is by design, so that you can change the default launcher to suit your needs.  It is not recommended that you link to `../.run/run-sh` directly unless you have specific requirements to use the shell-based launcher.
 1. You must, at a minimum, define the values `DAEMON`, `DAEMONOPTS`, and `PRELAUNCH` in `sv/(service)/env/`.
 1. If your daemon requires a run-state directory, you must define `sv/(service)/env/STATEDIR` to have the correct absolute path name.  You will also need, at a minimum, to define `sv/(service)/env/T_UID` to be the user name the daemon runs under, so it can access the directory.  Errors with the state directory are usually caused by the ownership not being set, and `T_UID` resolves that issue.
 1. It is recommended, but not required, that you place a `pgrphack` statement in `sv/(service)/env/PRELAUNCH`.  This will assist in keeping the daemon tied to the supervisor.  The framework will automatically resolve `pgrphack` to use the correct program for your supervision arrangement.
