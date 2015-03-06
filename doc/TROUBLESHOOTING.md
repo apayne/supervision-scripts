@@ -1,30 +1,30 @@
 ## Common Issues
 
 ### Definitions fail to start
-* Is there an `untested` file present in the definition directory?  If so, the service you are attempting to start may not be fully tested.  If you see this, please send me details about your configuration and what you are attempting to start.
 * Make sure you copied the four hidden directories to the service definition directory.
+* Is there an `untested` file present in the definition directory?  If so, the service you are attempting to start may not be fully tested, and as such, may fail to start.  If you see this, please send me details about your configuration and what you are attempting to start.
+* Is there an `broken` file present in the definition directory?  The service may not support supervision correctly, or may require additional configuration before launching.  Check the log of the service for details.
 
 ### Definitions loop over and over
-This is typically the daemon/process exiting due to some error or configuration issue.  Check to make sure your service is installed correctly, and that any configuration files have the correct settings.
+This is typically the daemon/process exiting due to some error or configuration issue.  Check to make sure your service is installed correctly, and that any configuration files have the correct settings.  The daemon may also require that another daemon be started first; look to see if there is a ./needs directory, and examine the names of the daemons contained therein.  Or, you can enable the optional dependency resolution to take care of that for you.
 
 ### My newly-created / manually-created simple service won't start
-The requirements for run-simple are as follows:
+The requirements for run-sh are as follows:
 
-1. The definition directory name must *exactly* match the program name.  Example: you want to start and control a program with the name `/usr/bin/mynewserviced`, so you would create your definition at `/etc/sv/mynewserviced`.
-1. The `/etc/sv/(service)/run` file will be a symlink pointing to `../.run/run-simple`.
-1. The `run-simple` script *assumes* you have a `/etc/sv/(service)/log` entry for logging but does not *require* it.
-1. The program does not require the creation of directories, files, or file sockets.
-1. The program does not depend on another service being already started, i.e. lightdm needs dbus to be running before it can run, so lightdm *cannot* be a simple service definition.
-1. You have set all of the needed command line options in the ./options file,* including any flags that prevent backgrounding or daemonization of the program.*  This is critical to ensuring that the program will be properly controlled.
-1. The ./options file is executable, i.e. 700 or 750 or 755.
+1. The `sv/(service)/run` file will be a symlink pointing to `../.run/run`.  This is by design, so that you can change the default launcher to suit your needs.  It is not recommended that you link to `.run/run-sh` directly unless you have specific requirements to use the shell-based launcher.
+1. You must, at a minimum, define the values `DAEMON`, `DAEMONOPTS`, and `PRELAUNCH` in `sv/(service)/env/`.
+1. If your daemon requires a run-state directory, you must define `sv/(service)/env/STATEDIR` to have the correct absolute path name.  You will also need, at a minimum, to define `sv/(service)/env/T_UID` to be the user name the daemon runs under, so it can access the directory.  Errors with the state directory are usually caused by the ownership not being set, and `T_UID` resolves that issue.
+1. It is recommended, but not required, that you place a `pgrphack` statement in `sv/(service)/env/PRELAUNCH`.  This will assist in keeping the daemon tied to the supervisor.  The framework will automatically resolve `pgrphack` to use the correct program for your supervision arrangement.
+1. The program does not require the creation of files, fifos, or file sockets.  If you have those specific needs, you're better off using a custom `(service)/run` script.
+1. The program does not depend on another service being already started, i.e. lightdm needs dbus to be running before it can run, so lightdm *cannot* be a simple service definition.  You can overcome this by enabling dependency resolution, but there are limits.
+1. You have set all of the needed command line options in the ./env directory,* including any flags that prevent backgrounding or daemonization of the program.*  This is critical to ensuring that the program will be properly controlled.
 
-The `run-simple` script has been tested extensively and if you follow these guidelines, your service should start easily.  If your new service conflicts with any requirement listed above, it will not start; you will need to use a different template or write the `run` file by hand, sorry.
+The `run-sh` script has been tested extensively and if you follow these guidelines, your service should start easily.  If your new service conflicts with any requirement listed above, it will not start; you will need to use a different template or write the `run` file by hand, sorry.
 
 ### My getty won't start
 The requirements for run-getty are as follows:
 
 1. The appropriate getty is installed and in the `$PATH`
-1. The definition directory name must be the getty program, a hyphen, and the tty to be controlled.  Example: mingetty-tty2 will start as `mingetty tty2`
 1. The tty is *not* already controlled by another program, such as SysV's `/sbin/init` or systemd.  If the tty is already controlled, the script will fail to start, looping repeatedly until you either stop the script or disable the management of the tty from the other program.
 1. Only `agetty`, `mingetty`, and `fgetty` are supported at this time; there is no support for a different getty.  If you need a new one added, please contact me.
 
