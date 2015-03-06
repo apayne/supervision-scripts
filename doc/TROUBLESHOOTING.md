@@ -4,6 +4,7 @@
 * Make sure you copied the four hidden directories to the service definition directory.
 * Is there an `untested` file present in the definition directory?  If so, the service you are attempting to start may not be fully tested, and as such, may fail to start.  If you see this, please send me details about your configuration and what you are attempting to start.
 * Is there an `broken` file present in the definition directory?  The service may not support supervision correctly, or may require additional configuration before launching.  Check the log of the service for details.
+* Did you run the appropriate set-up script for your supervisor?  In `sv/.bin` you will see `use-daemontools`, `use-runit`, and `use-s6`.  As root, inside of the `sv/.bin` directory, run the corresponding script to set up your environment.  This will generate needed environment variables and symlinks.  If it hasn't been run, or you've run the wrong one, simply run the correct script and the settings will all reset.
 
 ### Definitions loop over and over
 This is typically the daemon/process exiting due to some error or configuration issue.  Check to make sure your service is installed correctly, and that any configuration files have the correct settings.  The daemon may also require that another daemon be started first; look to see if there is a ./needs directory, and examine the names of the daemons contained therein.  Or, you can enable the optional dependency resolution to take care of that for you.
