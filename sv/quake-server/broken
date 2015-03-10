@@ -1,0 +1,1 @@
+You must edit env/DAEMONOPTS to have the correct configuration path and file name before the server can start.  You must also supply a .wad file for the server as well.  The service will now restart.
