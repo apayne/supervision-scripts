@@ -1,0 +1,26 @@
+#!/bin/sh
+# This script attempts to determine the appropriate
+# logging service based on the FRAMEWORK setting
+
+# fold everything into stdout
+exec 2>&1
+
+# obtain the FRAMEWORK setting
+FRAMEWORK=$( cat ../../.env/FRAMEWORK )
+
+# assign a sensical default
+LOGSV=""
+case $FRAMEWORK in
+  daemontools) LOGSV="multilog"
+    ;;
+  runit) LOGSV="svlogd"
+    ;;
+  s6) LOGSV="s6-log"
+    ;;
+esac
+
+if test -z $LOGSV then;
+  exec ./run-$LOGSV
+else
+  echo "autolog could not determine the appropriate logger.  Aborting."
+fi
