@@ -65,7 +65,7 @@ Run one of `use-daemontools`, `use-runit`, or `use-s6` to switch support between
 
 You can check your new settings after you run your `use-whatever` script by running `check-settings` in the same directory.
 
-Because logging is framework and system dependent, it is disabled by default, with the default logging script pointing to `/bin/true`.  You will need to go into the `/etc/sv/.log` directory and remove the symlink named `run`, and then redefine it to point to one of the logging scripts in that directory.  *This will become the default logging service system-wide, and requires that you have the appropriate logging service already installed.* 
+Because logging is framework and system dependent, it is disabled by default, with the default logging script pointing to `/bin/true`.  You will need to go into the `/etc/sv/.log` directory and remove the symlink named `run`, and then redefine it to point to one of the logging scripts in that directory.  *This will become the default logging service system-wide, and requires that you have the appropriate logging service already installed.*  Alternatively, you can choose to use the autolog function, although this feature is experimental.
 
 That's it!  The definitions are ready to use.
 
