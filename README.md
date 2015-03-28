@@ -16,11 +16,17 @@ environments.**
 * Adapts to your framework.  Choose the original DJB daemontools, Gerrit Pape's 
 runit, or Laurent Bercot's s6.
 
-* Common activities use a template system instead of one-off scripts, reducing 
-development time and potential bugs.
+* No need for PID files.  PID file support will be completely removed in the 0.1 release. 
 
-* Simple services can be quickly defined if the daemon has minimal 
-requirements.
+* System wide defaults mean you can easily switch run directories, etc. with just a few settings. 
+
+* Mix logging services from different frameworks
+
+* Per-definition logging overrides are easily done with a single symlink.
+
+* A common set of scripts reduces complexity, bugs, and the amount of time needed to create a new definition. 
+
+* Simple services can be quickly defined.
 
 * Mix-and-match ttys.  Choose between agetty, mingetty, or fgetty.
 
@@ -32,6 +38,8 @@ master supervision tree.
 
 * Optional dependency handling (not enabled by default - see the documentation 
 for details.)
+
+* Optional "auto log" feature detects appropriate logging service to use based on the framework you have designated. 
 
 ## Future Plans #
 * Tenative plans for supporting freedt, daemontools-encore, nosh, and perp.
