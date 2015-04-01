@@ -83,14 +83,14 @@ fi
 # look for a user ID and store it if found
 T_UID=""
 if test -f ./env/T_UID ; then
-  T_UID=$( cat ./env/T_UID )
+  read $T_UID < ./env/T_UID
 fi
 
 
 # look for a group ID and store it if found
 T_GID=""
 if test -f ./env/T_GID ; then
-  T_GID=$( cat ./env/T_GID )
+  read $T_GID < ./env/T_GID
 fi
 
 
