@@ -9,7 +9,7 @@ exec 2>&1
 
 
 # shim our support tools into the path relative to the definition
-PATH=$(pwd)/../.bin:$PATH
+PATH=$PWD/../.bin:$PATH
 
 
 # check for a broken definition marker, and abort processing
