@@ -14,3 +14,4 @@ operation.  I'd like to give many thanks for the dontation from that project's t
 
 Scripts for ypbind and autofs were improved by Luke Diamand (luke -AT- diamand.org).  Thank you for your help.
 
+Additional suggestions provided in an email from drwilly@drwille.de, and were implemented in sv/.run/run.sh
