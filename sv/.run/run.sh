@@ -21,7 +21,7 @@ fi
 
 
 # figure out our definition name, which is needed for service control
-SELF=$(basename $(pwd))
+SELF=$(basename $PWD)
 
 
 # prepare command phrases
