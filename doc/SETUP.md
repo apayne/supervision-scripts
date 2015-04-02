@@ -51,7 +51,7 @@ Toybox is still undergoing heavy development and many missing or pending command
 
 ## Installation #
 
-Currently, the target directory is assumed to be `/etc/sv`.
+Currently, the target directory is assumed to be `/etc/sv`, although this is not a hard requirement.  The scripts are relocatable to any directory and use relative pathing when accessing various common scripts and settings.  Other viable locations are /etc/service, /var/sv, /var/service, or any other writable directory.  Note that you will need to ensure that your supervision tree is looking at the installation directory; beyond that, the scripts will take care of the rest once they are set up.  For the sake of discussion and the remainder of this document, we will assume that we are installing to /etc/sv as a location.
 
 Use `mkdir -p /etc/sv ; cp -Rav sv/ /etc/sv/ ; cp -Rav sv/.* /etc/sv/` to copy all of the required definitions and tools.
 
