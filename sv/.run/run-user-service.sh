@@ -40,36 +40,34 @@ PATH=../.bin:$PATH
 
 
 # determine the supervision scanning process along with the user name
-SVINSTANCE=$( basename $( pwd ) )
-SVKEY=$( echo $SVINSTANCE | sed 's/-/ /' | awk '{ print $1 }' )
-SVUSER=$( echo $SVINSTANCE | sed 's/-/ /' | awk '{ print $2 }' )
+SVINSTANCE=$( basename $PWD )
 
-# daemontools
-[ $SVKEY='svscan' ] && SVSCAN=$SVKEY
-
-# runit
-[ $SVKEY='runsvdir' ] && SVSCAN=$SVKEY
-
-# s6
-# NOTE: the s6 naming convention uses hyphens so we need to re-assign $SVSCAN and $SVUSER
-[ $SVKEY = 's6' ] && SVSCAN="s6-svscan" && SVUSER=$(echo $SVINSTANCE | sed 's/-/ /' | awk '{ print $3 }' )
-
-
-# apply framework-specific options.
-# SVOPTS is intentionally left undefined as we want the script
-# to fail for a framework name that is not supported.
-
+case $SVINSTANCE in
 # daemontools: uses svscan, does not take arguments
-[ $SVSCAN = 'svscan' ] && SVOPTS=""
-
+svscan-*)
+	SVUSER=$( echo $SVINSTANCE | cut -d "-" -f 2 )
+	SVSCAN="svscan"
+	SVOPTS=""
+	:;;
 # runit: uses runsvdir, takes a single process group argument
-# NOTE: SVOPTS is conditional on the supervise directory being adjusted
-# so that a failure in adjustment prevents launch (which would fail anyways)
-[ $SVSCAN = 'runsvdir' ] && chmod 755 ./supervise && chown $SVUSER ./supervise/* && SVOPTS="-P"
-
+runsvdir-*)
+	SVUSER=$( echo $SVINSTANCE | cut -d "-" -f 2 )
+	SVSCAN="runsvdir"
+	# NOTE: failure in adjustment prevents launch
+	chmod 755 ./supervise && chown $SVUSER ./supervise/* || exit 1
+	SVOPTS="-P"
+	:;;
 # s6: uses s6-svscan, takes up to two arguments.
-# NOTE: the maximum limit has been raised to 1000 processes to match the other frameworks
-[ $SVSCAN = 's6-svscan' ] && SVOPTS="-c 1000"
+s6-svscan-*)
+	SVUSER=$( echo $SVINSTANCE | cut -d "-" -f 3 )
+	SVSCAN="s6-svscan"
+	# NOTE: the maximum limit has been raised to 1000 processes to match the other frameworks
+	SVOPTS="-c 1000"
+	:;;
+*)
+	# unrecognized framework
+	exit 1
+esac
 
 # launch
 exec setuidgid $SVUSER $SVSCAN $SVOPTS /home/$SVUSER/service
