@@ -92,11 +92,13 @@ NOTE: these are tenative instructions and have not been tested; if it breaks, yo
 pieces.  Follow each of the four steps in sequence.
 
 To *install* supervision-scripts in an anopa environment:
+
 * `sudo cp -RAv sv/ /etc/anopa/services`
 * `sudo cp -Rav sv/.* /run/services`
 * `cd /run/services/.bin && sudo ./use-s6 && show-settings`
 
 To *use* supervision-scripts in an anopa environment you must:
+
 * `echo 0 > /run/services/.env/NEEDS_ENABLED`
 
 
