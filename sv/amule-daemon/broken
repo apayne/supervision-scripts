@@ -1,0 +1,1 @@
+To use amuled, you must define a user in env/T_UID.  Then remove this file and restart the daemon.
