@@ -4,13 +4,31 @@ The good thing about DJB-styled supervision is that it is simple to understand
 and maintain.  The bad thing is that you typically have to write your own 
 service entries to obtain it, and for a live system, the number of scripts to 
 be written is in the dozens.  Writing the entries over and over becomes tedious 
-and error-prone.  **Wouldn't it be great if there was a set of definitions 
-pre-written for you?** The supervision-scripts project is an attempt to combine 
+and error-prone.  The supervision-scripts project is an attempt to combine 
 all of the needed control scripts to allow a single set of process management 
 definitions be used under daemontools/runit/s6.
 
 Development is done with Debian 7 but **the scripts should work with most 
-environments.**
+environments.**  If you are able to use the scripts in your distribution,
+please contact me and let me know.
+
+## Project Goals #
+
+* Encourage adoption of process supervision by increasing use
+
+* Provide a complete set of service definitions to encourage distributions to use
+process supervision by reducing the maintainer's load
+
+* Give the user a choice whenever possible
+
+* Be as friendly as possible to the widest range of inits, kernels, etc. so the user has choices
+
+* Be as agnostic as possible with regard to the supervisor used, so the user has choices
+
+* Be as agnostic as possible with regard to logging used, so the user has choices
+
+* Provide enhancements that don't conflict with the above goals, so the user has choices
+
 
 ## Features #
 * Adapts to your framework.  Choose the original DJB daemontools, Gerrit Pape's 
