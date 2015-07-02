@@ -34,6 +34,8 @@ process supervision by reducing the maintainer's load
 * Adapts to your framework.  Choose the original DJB daemontools, Gerrit Pape's 
 runit, or Laurent Bercot's s6.
 
+* Experimental support for perp (untested).
+
 * No need for PID files.  PID file support will be completely removed in the 0.1 release. 
 
 * System wide defaults mean you can easily switch run directories, etc. with just a few settings. 
