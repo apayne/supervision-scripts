@@ -13,7 +13,7 @@ rm fghack && \
   echo "$0: fghack reset"
 
 rm pgrphack && \
- ln -s /usr/bin/pgrphack ./pgrphack && \
+ ln -s /usr/bin/s6-setsid ./pgrphack && \
   echo "$0: pgrphack reset"
 
 rm setlock && \
