@@ -20,7 +20,7 @@ if test -f ./broken ; then
 fi
 
 
-# figure out our definition name, which is needed for service control
+# figure out our definition name, which is used for peer-level dependency launch
 SELF=$(basename $PWD)
 
 
@@ -64,6 +64,22 @@ if test -f ./env/STATEDIR ; then
     chgrp $T_GID $RUNSTATEDIR
     # make write access available to the group if it was defined
     chmod 775 $RUNSTATEDIR
+  fi
+fi
+
+
+# if a named pipe is defined, then build it prior to launch
+if test -f ./env/FIFO ; then
+  RUNFIFO=$( cat ./env/FIFO )
+  mkfifo $RUNFIFO
+  chmod 600 $RUNFIFO
+  if test ! -z $T_UID ; then
+    chown $T_UID $RUNFIFO
+  fi
+  if test ! -z $T_GID ; then
+    chgrp $T_GID $RUNFIFO
+    # make write access available to the group if it was defined
+    chmod 660 $RUNFIFO
   fi
 fi
 
