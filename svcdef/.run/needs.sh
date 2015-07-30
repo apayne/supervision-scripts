@@ -1,4 +1,6 @@
 # This is called for peer-level dependency launches.  It is active when NEEDS_ENABLED=1
+# It is directly called from .bin/run.sh, which has all of the missing variable definitions.
+
 
   # probe for a needs directory, and attempt to start each link
   # found if present; if the needed definition can't start or isn't found, halt the script.
