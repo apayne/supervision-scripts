@@ -77,7 +77,7 @@ To be determined.
 
 To be determined.
 
-### Installing with Aanopa #
+### Installing with Anopa #
 
 WARNING: these are tenative instructions and have not been tested; if it breaks, 
 you get to keep both pieces.  Follow each of the four steps in sequence.
@@ -114,7 +114,7 @@ Anopa's instance support is not available with supervision-scripts at this time.
 am looking at how anopa uses this feature, and will need to determine later if it 
 can be supported correctly.
 
-Based on the published specifications found at http://jjackey.com/anopa , the 
+Based on the published specifications found at http://jjacky.com/anopa/, the 
 supervision-scripts implementation of `./needs` appears to be compatible with 
 anopa's use of the same, including the same type of "fail-on-child-failure" 
 behavior.  As much as I would like to say that this was a good design 
