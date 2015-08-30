@@ -1,1 +1,0 @@
-envdir /etc/bcron setuidgid cron

@@ -1,1 +1,0 @@
--u nobody -C /etc/mini-httpd.conf -D
