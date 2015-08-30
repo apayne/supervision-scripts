@@ -1,0 +1,1 @@
+-c /etc/mon/mon.cf -b /usr/lib/mon 

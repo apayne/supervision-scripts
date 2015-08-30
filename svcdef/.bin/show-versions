@@ -1,0 +1,11 @@
+#!/bin/sh
+for svc in ../*
+do
+	echo -n "$svc: "
+	if [ -d $svc/version ] ;
+	then
+		ls $svc/version
+	else
+		echo "MISSING"
+	fi
+done

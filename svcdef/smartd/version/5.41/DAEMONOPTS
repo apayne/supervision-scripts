@@ -1,0 +1,1 @@
+--no-fork --pidfile /var/run/smartd.pid
