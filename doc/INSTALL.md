@@ -9,7 +9,6 @@ You must have the following present for a successful installation:
 * The following commands must be present in your $PATH setting:
     * `awk`
     * `basename`
-    * `cd`
     * `chmod`
     * `chown`
     * `echo`
@@ -27,7 +26,6 @@ Despite the long list, the majority of installations will have these.  The grid 
 | ---      | :-: | :-: |  :-:   | :-:     |
 | awk      | Yes | Yes | *Pend* | Yes     |
 | basename | Yes | Yes |  Yes   | Yes     |
-| cd       | Shell | Shell | Shell | Shell  |
 | chmod    | Yes | Yes |  Yes   | Yes     |
 | chown    | Yes | Yes |  Yes   | Yes     |
 | echo     | Yes | Yes |  Yes   | Yes     |
@@ -69,3 +67,83 @@ Because logging is framework and system dependent, it is disabled by default, wi
 
 That's it!  The definitions are ready to use.
 
+## Installation for Service/State Management
+
+### Installing with OpenRC + (insert supervision framework here) #
+
+To be determined.
+
+### Installing with Ignite #
+
+To be determined.
+
+### Installing with Aanopa #
+
+WARNING: these are tenative instructions and have not been tested; if it breaks, 
+you get to keep both pieces.  Follow each of the four steps in sequence.
+
+To install supervision-scripts in an anopa environment:
+
+* `sudo cp -RAv svcdef/ /etc/anopa/services`
+* `sudo cp -Rav svcdef/.* /run/services`
+* `echo 0 > /run/services/.env/NEEDS_ENABLED`
+* `cd /run/services/.bin && sudo ./use-s6 && sudo show-settings`
+
+
+And now some notes about what these steps mean:
+
+Because it is anticipated that existing package definitions may exist already at 
+`/usr/lib/services`, the administrative override of `/etc/anopa/services` is used 
+instead, to prevent a destructive overwrite from ocurring.  This recommendation 
+will continue until the supervision-scripts project has approached its goal of 
+providing near-universal definition coverage and has been fully tested with anopa, 
+at which point I will suggest installing into `/usr/lib/services`.
+ 
+Note that the support directories MUST be present for supervision-scripts to work 
+correctly, but anopa will require that they be installed in another location.  
+Based on current documentation, it appears that `.bin`, `.run`, `.env`, and `.log` 
+must be copied to `/run/services` for anopa to support them; this is due to how 
+anopa handles service definitions, which (in the case of my installation 
+instructions) are copied in-place at runtime from `/etc/anopa/services` to 
+`/run/services`.  All of the supervision-scripts definitions make the assumption 
+that the support directories live at the same location as the active definitions 
+themselves.  That means (in theory) that anopa will copy the definitions to the 
+same location as the support directories, and everything will "just work".
+
+Anopa's instance support is not available with supervision-scripts at this time.  I 
+am looking at how anopa uses this feature, and will need to determine later if it 
+can be supported correctly.
+
+Based on the published specifications found at http://jjackey.com/anopa , the 
+supervision-scripts implementation of `./needs` appears to be compatible with 
+anopa's use of the same, including the same type of "fail-on-child-failure" 
+behavior.  As much as I would like to say that this was a good design 
+decision on my part, it is admittedly and entirely by fortuitous 
+circumstance.  Note that anopa's concept of `./wants`, `./after`, and 
+`./before` are not implemented in supervision-scripts, nor is there planned 
+support for them through supervision-scripts alone.  Anopa makes use of s6's 
+features to ensure that a service is fully available, and not just running; 
+this makes support for these other directories feasible.  Due to backwards 
+compatibility requirements with daemontools and runit (which have only 
+rudimentary support via `./check` scripts), supervision-scripts has no such 
+provision.  That being said, you must keep NEEDS_ENABLED turned off at all 
+times when using anopa.  In theory, this shouldn't be an issue because using 
+NEEDS_ENABLED causes `.run/run` to perform a check of the child service 
+before attempting to launch it, and because of how ./needs works in both 
+anopa and supervision-scripts, you would always end up with either the child 
+launched by anopa ahead of time, or the parent's `run` script not executing 
+because the child failed to come up properly.  I cannot guarantee that this 
+always the case, so you are safer with the feature disabled while anopa 
+handles `./needs`.
+
+If needed, you can point ./run/run to an alternative launcher.  Note that 
+this shifts the entire *system* to using that launcher; if you need 
+per-service definitions shifted, simply override the setting for the service 
+instead.
+
+
+### Installing with s6-rc #
+
+To be determined.
+
+### 
