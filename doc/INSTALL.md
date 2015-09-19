@@ -69,7 +69,7 @@ That's it!  The definitions are ready to use.
 
 ## Installation for Service/State Management
 
-### Installing with OpenRC + (insert supervision framework here) #
+### Installing with OpenRC + s6 #
 
 To be determined.
 
