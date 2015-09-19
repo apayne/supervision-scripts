@@ -1,69 +1,73 @@
 ## Introduction #
 
-The good thing about DJB-styled supervision is that it is simple to understand 
-and maintain.  The bad thing is that you typically have to write your own 
-service entries to obtain it, and for a live system, the number of scripts to 
-be written is in the dozens.  Writing the entries over and over becomes tedious 
+The good thing about supervision is that it is simple to understand and 
+maintain.  The bad thing is that you typically have to write your own service 
+entries to obtain it, and for a live system, the number of scripts to be 
+written is in the dozens.  Writing the entries over and over becomes tedious 
 and error-prone.  The supervision-scripts project is an attempt to combine 
 all of the needed control scripts to allow a single set of process management 
-definitions be used under daemontools/runit/s6.
+definitions be used under daemontools, and daemontools-alike programs such as 
+runit and s6.
 
-Development is done with Debian 7 but **the scripts should work with most 
-environments.**  If you are able to use the scripts in your distribution,
-please contact me and let me know.
+The daemon definition scripts should work with most environments.  If you 
+are able to use the scripts in your distribution, please contact me and let 
+me know.
+
 
 ## Project Goals #
 
-* Encourage adoption of process supervision by increasing use
+* Provide a nearly-complete set of daemon definitions.
 
-* Provide a complete set of service definitions to encourage distributions to use
-process supervision by reducing the maintainer's load
+* Encourage adoption of process supervision by making it easy to incorporate 
+into distributions and packages.
 
-* Give the user a choice whenever possible
-
-* Be as friendly as possible to the widest range of inits, kernels, etc. so the user has choices
-
-* Be as agnostic as possible with regard to the supervisor used, so the user has choices
-
-* Be as agnostic as possible with regard to logging used, so the user has choices
-
-* Provide enhancements that don't conflict with the above goals, so the user has choices
+* Give the user a voice in deciding policy on thier system when possible
 
 
 ## Features #
-* Adapts to your framework.  Choose the original DJB daemontools, Gerrit Pape's 
-runit, or Laurent Bercot's s6.
+* A small number of common scripts reduces complexity, bugs, and the amount 
+of time needed to create a new definition.  The scripts live in compact, 
+hidden directories that stay out of your way.
 
-* Experimental support for perp (untested).
+* Adapts to your supervision framework.  Choose Gerrit Pape's runit, or 
+Laurent Bercot's s6.
 
-* No need for PID files.  PID file support will be completely removed in the 0.1 release. 
+* Support scripts are neutral to system management and can be easily 
+incorporated.  It means they can be used with ignite, anopa, or s6-rc.
 
-* System wide defaults mean you can easily switch run directories, etc. with just a few settings. 
+* Logging is included "out of the box".  Each definition receives its own 
+logging directory.
 
-* Mix logging services from different frameworks
+* System wide defaults are easily switched to suit your needs.  You can 
+change the default logger, the location of the run state directory, etc.
 
-* Per-definition logging overrides are easily done with a single symlink.
+* Simple daemons can be quickly defined by hand and incorporated into your 
+arrangement(s).
 
-* A common set of scripts reduces complexity, bugs, and the amount of time needed to create a new definition. 
+* No need for PID files.
 
-* Simple services can be quickly defined.
-
-* Mix-and-match ttys.  Choose between agetty, mingetty, or fgetty.
-
-* Support scripts live in compact, hidden directories out of your way.
-
-* Optional integration for user-controlled services.  A user can have their own 
+* Optional integration for user-controlled daemons.  A user can have their own 
 supervision instance under the control of their account, but attached to the 
 master supervision tree.
 
 * Optional dependency handling (not enabled by default - see the documentation 
 for details.)
 
-* Optional "auto log" feature detects appropriate logging service to use based on the framework you have designated. 
 
 ## Future Plans #
-* Tenative plans for supporting freedt, daemontools-encore, nosh, and perp.
-* Tenative plans for supporting a choice between execline and /bin/sh.
+* Experimental support for perp.  This is currently written using a shim, but 
+untested at this time.  There may be a possibility of directly supporting 
+perp using the run-script abstraction mechanism.
+
+* Tenative plans for testing against daemontools, freedt and 
+daemontools-encore, all of which share the same design decisions.
+
+* Tenative partial support for nosh (due to a slightly different file 
+layout).  Incorporation of daemon defintions into nosh is possible, but nosh 
+has additional structural features, such as service ordering, that are not 
+included.
 
 ## License #
-Currently Licensed under MPL 2.0 minus the exclusion clause.  Once the project reaches a 0.2 release, I will move to a BSD/MIT style license.
+
+Currently Licensed under MPL 2.0 minus the exclusion clause.  Once the 
+project reaches a 0.2 release, I will move to a BSD/MIT style license.
