@@ -144,6 +144,23 @@ instead.
 
 ### Installing with s6-rc #
 
-To be determined.
+s6-rc has some specific requirements for supervision-scripts to work correctly.
+It places definitions into a "source" directory, and then using the `s6-rc-compile`
+tool, creates a set of "compiled" definitions to be used by the live system.  The
+installation process will focus on converting supervision-scripts definitions into
+the format required by `s6-rc-compile`.
+
+First, you will need to extract the svcdef/ directory to a specific location.  Once
+extracted, you will need to navigate in your shell session to the `.bin` directory
+using something like `cd svcdef/.bin`.  Once there, run the ./use-s6 command, and then
+run the `./use-s6-rc` command with the path name of your s6-rc source directory.  Example:
+
+    cd ./svcdef/.bin
+    ./use-s6
+    ./use-s6-rc /path/to/s6-rc/source-directory
+    
+The use-s6 command is necessary to tell supervision-scripts that the underlying supervisor
+is s6.  The last command will install definitions into the source directory while converting
+them to the required format.
 
 ### 
