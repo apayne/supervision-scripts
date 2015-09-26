@@ -149,17 +149,14 @@ tool, creates a set of "compiled" definitions to be used by the live system.  Th
 installation process will focus on converting supervision-scripts definitions into
 the format required by `s6-rc-compile`.
 
-First, you will need to extract the svcdef/ directory to a specific location.  Once
-extracted, you will need to navigate in your shell session to the `.bin` directory
-using something like `cd svcdef/.bin`.  Once there, run the ./use-s6 command, and then
-run the `./use-s6-rc` command with the path name of your s6-rc source directory.  Example:
+The following requirements are needed for supervision-scripts to interact with s6-rc:
 
-    cd ./svcdef/.bin
-    ./use-s6
-    ./use-s6-rc /path/to/s6-rc/source-directory
-    
-The use-s6 command is necessary to tell supervision-scripts that the underlying supervisor
-is s6.  The last command will install definitions into the source directory while converting
-them to the required format.
+* The `./version/` directory in each definition will need to be renamed to `./data/`, and the `./env` symlink moved to point to the correct subdirectory inside of `./data/`.
+* Any definition that contains a `./needs/` directory needs to be translated into a `./dependencies` file.
+* The `NEEDS_ENABLED` environment variable must be set to zero (which turns off the feature), as s6-rc provides for this feature.
+* Out-of-the-box logging for supervision-scripts is broken, as s6-rc replaces the existing logging mechanism.  This will be accomodated by creating separate logging defintions as needed.
+* The `.bin`, `.env`, `.log` and `.run` directories are not supported in the "compiled" directory.  To work around this, each support directory will be kept intact in the source directory, and the symlinks in the definitions adjusted accordingly.
+
+Note that the last step is required for the definitions to work, but it also breaks a design feature; you cannot relocate the source definition directory or you will end up with dangling symlinks in the definitions, and by extension, the definitions will stop working.
 
 ### 
