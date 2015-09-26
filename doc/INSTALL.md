@@ -34,7 +34,6 @@ Despite the long list, the majority of installations will have these.  The grid 
 | mkdir    | Yes | Yes |  Yes   | Yes     |
 | rm       | Yes | Yes |  Yes   | Yes     |
 | sed      | Yes | Yes | *Pend* | Yes     |
-| test     | Yes | Yes | *Pend* | Yes     |
 | wc       | Yes | Yes |  Yes   | Yes     |
 
 Compatibility Grid Legend
