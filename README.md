@@ -1,3 +1,28 @@
+## NOTICE #
+
+There are known design issues that, while not fatal, prevent me from
+achieving some of my goals for the project. The project is still viable
+if you need to have pre-made scripts for daemontools, runit, or s6
+on a Debian-based system. Beyond that, you will need to make changes
+to have the project support your environment fully. Because of these
+dependencies, and other issues, supervision-scripts will be entering
+"maintenance", during which the documentation will be fully updated.
+After the documentation is complete, it will be "retired". I will still
+be available to answer any questions or concerns even after the project
+is "retired", providing a kind of limited support.
+
+Once supervision-scripts is fully retired, I am planning on starting
+a new project that will incorporate some of the concepts in supervision-scripts
+while working around the design flaws that caused it to be retired in the
+first place. When this occurs, I will update this page with the announcement
+along with a link to refer to.
+
+## License #
+
+Currently Licensed under MPL 2.0 minus the exclusion clause. Once the project
+is declared "retired", the license will be changed to ISC.
+
+
 ## Introduction #
 
 The good thing about supervision is that it is simple to understand and 
@@ -53,21 +78,3 @@ master supervision tree.
 * Optional dependency handling (not enabled by default - see the documentation 
 for details.)
 
-
-## Future Plans #
-* Experimental support for perp.  This is currently written using a shim, but 
-untested at this time.  There may be a possibility of directly supporting 
-perp using the run-script abstraction mechanism.
-
-* Tenative plans for testing against daemontools, freedt and 
-daemontools-encore, all of which share the same design decisions.
-
-* Tenative partial support for nosh (due to a slightly different file 
-layout).  Incorporation of daemon defintions into nosh is possible, but nosh 
-has additional structural features, such as service ordering, that are not 
-included.
-
-## License #
-
-Currently Licensed under MPL 2.0 minus the exclusion clause.  Once the 
-project reaches a 0.2 release, I will move to a BSD/MIT style license.
