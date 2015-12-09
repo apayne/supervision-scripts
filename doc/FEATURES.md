@@ -76,13 +76,3 @@ to using that launcher; if you need per-service definitions shifted, simply over
 service instead.
 
 
-### Automatic Log Selection, aka Autolog
-
-The autolog feature is a template that "guesses" the log service to use based on 
-the framework selected, which is itself defined in the FRAMEWORK variable created 
-during the setup process with run-(frameworkname).  It will attempt to call the 
-"correct" logging run script based on the assumption that a framework also includes 
-a logging package "out of the box".  Note that this is not a hard guarantee - it is 
-entirely possible to not have a framework installed but the associated logging 
-service missing.
-
