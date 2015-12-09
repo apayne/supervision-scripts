@@ -17,7 +17,6 @@ You must have the following present for a successful installation:
     * `mkdir`
     * `rm`
     * `sed`
-    * `test`
     * `wc`
 
 Despite the long list, the majority of installations will have these.  The grid below shows which tools are generally available, for each toolset.
