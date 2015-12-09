@@ -140,23 +140,4 @@ this shifts the entire *system* to using that launcher; if you need
 per-service definitions shifted, simply override the setting for the service 
 instead.
 
-
-### Installing with s6-rc #
-
-s6-rc has some specific requirements for supervision-scripts to work correctly.
-It places definitions into a "source" directory, and then using the `s6-rc-compile`
-tool, creates a set of "compiled" definitions to be used by the live system.  The
-installation process will focus on converting supervision-scripts definitions into
-the format required by `s6-rc-compile`.
-
-The following requirements are needed for supervision-scripts to interact with s6-rc:
-
-* The `./version/` directory in each definition will need to be renamed to `./data/`, and the `./env` symlink moved to point to the correct subdirectory inside of `./data/`.
-* Any definition that contains a `./needs/` directory needs to be translated into a `./dependencies` file.
-* The `NEEDS_ENABLED` environment variable must be set to zero (which turns off the feature), as s6-rc provides for this feature.
-* Out-of-the-box logging for supervision-scripts is broken, as s6-rc replaces the existing logging mechanism.  This will be accomodated by creating separate logging defintions as needed.
-* The `.bin`, `.env`, `.log` and `.run` directories are not supported in the "compiled" directory.  To work around this, each support directory will be kept intact in the source directory, and the symlinks in the definitions adjusted accordingly.
-
-Note that the last step is required for the definitions to work, but it also breaks a design feature; you cannot relocate the source definition directory or you will end up with dangling symlinks in the definitions, and by extension, the definitions will stop working.
-
 ### 
