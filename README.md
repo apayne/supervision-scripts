@@ -57,9 +57,6 @@ hidden directories that stay out of your way.
 * Adapts to your supervision framework.  Choose Gerrit Pape's runit, or 
 Laurent Bercot's s6.
 
-* Support scripts are neutral to system management and can be easily 
-incorporated.  It means they can be used with ignite, anopa, or s6-rc.
-
 * Logging is included "out of the box".  Each definition receives its own 
 logging directory.
 
