@@ -1,77 +1,48 @@
-## NOTICE #
+# Welcome to supervision-scripts
 
-There are known design issues that, while not fatal, prevent me from
-achieving some of my goals for the project. The project is still viable
-if you need to have pre-made scripts for daemontools, runit, or s6
-on a Debian-based system. Beyond that, you will need to make changes
-to have the project support your environment fully. Because of these
-dependencies, and other issues, supervision-scripts will be entering
-"maintenance", during which the documentation will be fully updated.
-After the documentation is complete, it will be "retired". I will still
-be available to answer any questions or concerns even after the project
-is "retired", providing a kind of limited support.
-
-Once supervision-scripts is fully retired, I am planning on starting
-a new project that will incorporate some of the concepts in supervision-scripts
-while working around the design flaws that caused it to be retired in the
-first place. When this occurs, I will update this page with the announcement
-along with a link to refer to.
 
 ## License #
 
-Currently Licensed under MPL 2.0 minus the exclusion clause. Once the project
-is declared "retired", the license will be changed to ISC.
-
+As of May 3rd, 2016, project uses the ISC license.  All versions prior to that date use the MPL 2.0 license, minus the Part B clause.
 
 ## Introduction #
 
-The good thing about supervision is that it is simple to understand and 
-maintain.  The bad thing is that you typically have to write your own service 
-entries to obtain it, and for a live system, the number of scripts to be 
-written is in the dozens.  Writing the entries over and over becomes tedious 
-and error-prone.  The supervision-scripts project is an attempt to combine 
-all of the needed control scripts to allow a single set of process management 
-definitions be used under daemontools, and daemontools-alike programs such as 
-runit and s6.
+This project aims to provide supervisor run scripts.  Initial support will be given for runit and s6, but there may be additional support for other supervisors in the future.
 
-The daemon definition scripts should work with most environments.  If you 
-are able to use the scripts in your distribution, please contact me and let 
-me know.
+Prior to May 2016, the project was aimed at providing run scripts that work within Debian, and hopefully other systems.  That emphasis has changed and the project will now aim at producing supervisor and platform agnostic run scripts.  This means that once the project reaches a 1.0 release, you should be able to switch your process supervision to runit or s6 with only minor effort on your part.
+
+Another side goal is to provide an easy way for existing distribution and package maintainers to create run scripts for daemons that fit their environment.  This means less time working on "glue scripts" to support supervision, and more time spent working on the daemon to be supervised.
+
+If you are new to process supervision, you may wish to read up on this suprisingly simple and easily supported idea.  Additionally, a(n incomplete) comparison of supervision frameworks, and their features, [can be found here](https://bitbucket.org/avery_payne/supervision-scripts/wiki/Comparison).
 
 
 ## Project Goals #
 
-* Provide a nearly-complete set of daemon definitions.
+* Provide a nearly-complete set of daemon definitions that are reasonably agnostic to the platform they run on.
 
-* Encourage adoption of process supervision by making it easy to incorporate 
-into distributions and packages.
-
-* Give the user a voice in deciding policy on thier system when possible
-
+* Encourage adoption of process supervision by making it easy to incorporate into distributions and packages.
 
 ## Features #
-* A small number of common scripts reduces complexity, bugs, and the amount 
-of time needed to create a new definition.  The scripts live in compact, 
-hidden directories that stay out of your way.
 
-* Adapts to your supervision framework.  Choose Gerrit Pape's runit, or 
-Laurent Bercot's s6.
+* [The template system was used in prior versions, and works well under Debian.](https://bitbucket.org/avery_payne/supervision-scripts/wiki/Templates)
 
-* Logging is included "out of the box".  Each definition receives its own 
-logging directory.
+* Newer releases will be distribution-agnostic, and will *not* use [run templates](https://bitbucket.org/avery_payne/supervision-scripts/wiki/Templates).
 
-* System wide defaults are easily switched to suit your needs.  You can 
-change the default logger, the location of the run state directory, etc.
+* Aims towards being supervision-agnostic.
 
-* Simple daemons can be quickly defined by hand and incorporated into your 
-arrangement(s).
+* Support scripts are neutral to system management and can be easily incorporated.
 
-* No need for PID files.
+* Logging is included "out of the box". Each definition, by default, receives its own per-daemon logging directory.  You can easily change or disable this to suit your needs.
 
-* Optional integration for user-controlled daemons.  A user can have their own 
-supervision instance under the control of their account, but attached to the 
-master supervision tree.
 
-* Optional dependency handling (not enabled by default - see the documentation 
-for details.)
+## Future Plans #
 
+* Test for and support daemotools, freedt, and daemontools-encore.
+
+## Wish List #
+
+* Look at the possibility of supporting perp.
+
+* Look at the possibility of supporting nosh.
+
+* Look at the possibility of a support tool that would read systemd unit files and write ./run files as a result.
