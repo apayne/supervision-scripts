@@ -1,0 +1,2 @@
+-c /var/lib/shellinabox -p 4200 -u shellinabox -g shellinabox --no-beep
+

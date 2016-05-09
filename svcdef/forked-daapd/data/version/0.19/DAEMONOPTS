@@ -1,0 +1,1 @@
+-f -P /var/run/forked-daapd.pid -c /etc/forked-daapd.conf
