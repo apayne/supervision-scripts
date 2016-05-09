@@ -1,1 +1,1 @@
--d -f /etc/minidlna.conf -P /run/minidlna/minidlna.pid
+-d -f /etc/minidlna.conf 
