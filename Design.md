@@ -7,13 +7,13 @@ At this time I do not claim to be an expert in process management. I am approach
 There are people that would like to use supervisor frameworks on their systems but can't, typically because:
 
 * There is no support from the distribution or vendor
-*Even if there is minimal support, you have to write all of the run scripts needed to make things work
-*Any run scripts written are specific to the system and supervisor they are written for
+* Even if there is minimal support, you have to write all of the run scripts needed to make things work
+* Any run scripts written are specific to the system and supervisor they are written for
 
 # A short and limited background on process supervision concepts
 To my limited knowledge, the original supervision concept can be traced back to Daniel J. Bernstein. The following influences are noted in the design:
 
-a small group of programs that follow "do one thing, do it well",
+* a small group of programs that follow "do one thing, do it well",
 * each program should be as simple as possible, so it can be understood,
 * smaller and simpler programs usually (but not always) translated into more portable programs,
 * smaller and simpler programs usually (but not always) translated into more secure programs
@@ -90,14 +90,14 @@ Inside of /svcdef would be additional directories, one for each daemon that need
 
 All daemon launches from run scripts follow a general pattern of behavior:
 
-1 stdout and stderr are redirected into a single stream to be captured by the supervisor of the daemon. This is done as early as possible to ensure that any errors in the run script are captured to a log.
-2 in rare circumstances, a pre-launch program must be run before the daemon can be run. There are known examples that require this, such as dbus needing a GUID assigned, or squid needing a one-time run with the -Z option to create the cache directory structure. A basic "call hook" should be present to detect if this is needed and call a separate program prior to completing the daemon's launch.
-3 if needed, a run state directory is created on the system, and file permissions assigned to it.
-4 if needed, a fifo is created, and file permissions assigned to it.
-5 environmental settings are loaded
-6 additional launch requirements are enforced via chain-load, such as setting or changing UID or GID.
-7 the daemon is launched with the required arguments
-8 The run script in the daemon directory will be specifically tailored for the environment it is launching in by being “compiled” prior to use. By using a pre-process phase, we can allow the introduction of variables to the script that in turn will “compile” into the correct commands through substitution. The compile process can be extended to mapping system-specific settings, user and group IDs, and even to the programs used with a given supervisor. This eliminates several portability issues related to name mapping, pathing, etc. as mentioned above.
+  1. stdout and stderr are redirected into a single stream to be captured by the supervisor of the daemon. This is done as early as possible to ensure that any errors in the run script are captured to a log.
+  2. in rare circumstances, a pre-launch program must be run before the daemon can be run. There are known examples that require this, such as dbus needing a GUID assigned, or squid needing a one-time run with the -Z option to create the cache directory structure. A basic "call hook" should be present to detect if this is needed and call a separate program prior to completing the daemon's launch.
+  3. if needed, a run state directory is created on the system, and file permissions assigned to it.
+  4. if needed, a fifo is created, and file permissions assigned to it.
+  5. environmental settings are loaded
+  6. additional launch requirements are enforced via chain-load, such as setting or changing UID or GID.
+  7. the daemon is launched with the required arguments
+  8. The run script in the daemon directory will be specifically tailored for the environment it is launching in by being “compiled” prior to use. By using a pre-process phase, we can allow the introduction of variables to the script that in turn will “compile” into the correct commands through substitution. The compile process can be extended to mapping system-specific settings, user and group IDs, and even to the programs used with a given supervisor. This eliminates several portability issues related to name mapping, pathing, etc. as mentioned above.
 
 There will be in all cases a /log subdirectory in the daemon directory. While there is no mandate to enforce logging for all daemons, it makes sense to provide for it by default and let the administrator decide if they want it enabled or not. Should a given supervisor not have a fall-back logging mechanism, this ensures that logging will take place regardless of that.
 
