@@ -13,7 +13,7 @@ Prior to May 2016, the project was aimed at providing run scripts that work with
 
 Another side goal is to provide an easy way for existing distribution and package maintainers to create run scripts for daemons that fit their environment.  This means less time working on "glue scripts" to support supervision, and more time spent working on the daemon to be supervised.
 
-If you are new to process supervision, you may wish to read up on this suprisingly simple and easily supported idea.  Additionally, a(n incomplete) comparison of supervision frameworks, and their features, [can be found here](https://bitbucket.org/avery_payne/supervision-scripts/wiki/Comparison).
+If you are new to process supervision, you may wish to read up on this suprisingly simple and easily supported idea.  Additionally, a(n incomplete) comparison of supervision frameworks, and their features, [can be found here](https://github.com/apayne/supervision-scripts/blob/master/Comparison.md).
 
 
 ## Project Goals #
