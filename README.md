@@ -41,8 +41,4 @@ If you are new to process supervision, you may wish to read up on this suprising
 
 ## Wish List #
 
-* Look at the possibility of supporting perp.
-
-* Look at the possibility of supporting nosh.
-
 * Look at the possibility of a support tool that would read systemd unit files and write ./run files as a result.
