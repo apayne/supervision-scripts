@@ -1,6 +1,10 @@
 #!/bin/sh
-# This script was borrowed from the runit-for-lfs project.
 exec 2>&1
+
+# install framework tool shunt
+PATH=../.bin:$PATH
+
+# This script was borrowed from the runit-for-lfs project.
 HIDD_ENABLE="false"
 PAND_ENABLE="false"
 DUND_ENABLE="false"
@@ -25,4 +29,6 @@ if [ "$DUND_ENABLE" = "true" ]; then
   /usr/bin/dund "$DUND_OPTIONS" 2>&1
 fi
 
-exec /usr/sbin/bluetoothd -n -d 2>&1
+# start the service
+exec envdir ../.env envdir ./env sh -c 'exec $PRELAUNCH $DAEMON $DAEMONOPTS '
+
