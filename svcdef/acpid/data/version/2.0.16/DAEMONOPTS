@@ -1,1 +1,1 @@
- -f -p /var/run/acpid.pid 
+-f
