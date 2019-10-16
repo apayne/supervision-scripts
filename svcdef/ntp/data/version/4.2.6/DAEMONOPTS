@@ -1,1 +1,0 @@
--u ntp:ntp -c /etc/ntpd.conf -f /var/lib/ntp/ntp.drift -n -g

@@ -1,17 +1,1 @@
-#!/bin/sh
-exec 2>&1
-
-# install framework tool shunt
-PATH=../.bin:$PATH
-
-# must have a valid procfs
-$( mountpoint -q /proc/ ) || exit 1
-
-# create a unique identifier on each startup
-/usr/bin/dbus-uuidgen --ensure || exit 1
-
-mkdir -p /var/run/dbus
-
-# start the service
-exec envdir ../.env envdir ./env sh -c 'exec $PRELAUNCH $DAEMON $DAEMONOPTS '
-
+../.run/run

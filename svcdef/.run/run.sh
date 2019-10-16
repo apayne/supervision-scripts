@@ -41,14 +41,14 @@ fi
 # look for a user ID and store it if found
 T_UID=""
 if test -f ./env/T_UID ; then
-  read $T_UID < ./env/T_UID
+  T_UID=$( cat ./env/T_UID )
 fi
 
 
 # look for a group ID and store it if found
 T_GID=""
 if test -f ./env/T_GID ; then
-  read $T_GID < ./env/T_GID
+  T_GID=$( cat ./env/T_GID )
 fi
 
 
