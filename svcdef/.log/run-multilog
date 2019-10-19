@@ -1,11 +1,16 @@
 #!/bin/sh
-# Reference: http://skarnet.org/software/s6/s6-log.html
 exec 2>&1
 
 # determine our parent's name
 SVNAME=$( basename $( echo `pwd` | sed 's/log//' ) )
 
-# bring up s6-log, logging into a directory that has the parent's name.
-[ -d /var/log/$SVNAME ] || mkdir -p /var/log/$SVNAME ; chown :adm /var/log/$SVNAME
-[ -d main ] || ln -s /var/log/$SVNAME main
+# set log directory
+LOGDIR=$( cat ../../.env/LOGDIR )
+
+# fallback for compatibility
+[ -z $LOGDIR ] && LOGDIR=/var/log
+
+# bring up multilog, logging into a directory that has the parent's name.
+[ -d $LOGDIR/$SVNAME ] || mkdir -p $LOGDIR/$SVNAME ; chown :adm $LOGDIR/$SVNAME
+[ -d main ] || ln -s $LOGDIR/$SVNAME main
 exec /usr/bin/multilog n15 s1048576 t ./main
