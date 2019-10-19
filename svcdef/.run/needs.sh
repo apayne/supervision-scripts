@@ -18,7 +18,7 @@
           echo -n "$SVCITER, "
           if $DO_UP $SVCITER ; then
             if $DO_CHECK $SVCITER ; then
-             echo "$SVCNAME up."
+              echo "$SVCNAME up."
             else
               # a needed dependency failed, write the error out
               echo "$SVCNAME failed to start, aborting."
