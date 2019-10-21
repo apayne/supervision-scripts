@@ -10,7 +10,7 @@
 #   /service/(framework name)-(user name)
 #
 # REQUIREMENTS:
-#  (framework name) is one of  "svscan", "rundirsv", or "s6-svscan".  No other options are valid
+#  (framework name) is one of  "svscan", "runsvdir", or "s6-svscan".  No other options are valid
 #  (user name) is a valid local account name without quotes, i.e. user name 'jdoe' for user "Jane Doe"
 #
 # EXAMPLES:
