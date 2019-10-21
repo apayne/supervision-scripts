@@ -13,7 +13,7 @@ all:
 install: all
 	$(INSTALL) -d $(DESTDIR)$(DOCDIR)
 	$(INSTALL) -d $(DESTDIR)$(SRVDIR)
-	$(INSTALL) -D -m 0644 doc/LICENSE "$(DESTDIR)$(DOCDIR)/LICENSE"
+	$(INSTALL) -D -m 0644 LICENSE.md "$(DESTDIR)$(DOCDIR)/LICENSE.md"
 	$(INSTALL) -D -m 0644 README.md "$(DESTDIR)$(DOCDIR)/README.md"
 	for doc in FEATURES.md TROUBLESHOOTING.md; do \
 		$(INSTALL) -D -m 0644 doc/$$doc "$(DESTDIR)$(DOCDIR)/$$doc"; \
