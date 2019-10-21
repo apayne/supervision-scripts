@@ -15,16 +15,14 @@
         # the directory really exists, as it is possible for
         # the ./needs to be present but no entry present in /service
         if test -h $SVCITER ; then
-          echo -n "$SVCNAME, "
-          $DO_UP $SVCNAME
-          if test $? -eq 0 ; then
-            $DO_CHECK $SVCNAME
-            if test $? -gt 0 ; then
+          echo -n "$SVCITER, "
+          if $DO_UP $SVCITER ; then
+            if $DO_CHECK $SVCITER ; then
+              echo "$SVCNAME up."
+            else
               # a needed dependency failed, write the error out
               echo "$SVCNAME failed to start, aborting."
               exit 1
-            else
-             echo "$SVCNAME up."
             fi
           else
             echo "$SVCNAME did not come up successfully, aborting."
