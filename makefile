@@ -11,7 +11,7 @@ SRVDIR = /etc/svcdef
 # for config
 SUPERVISOR = none
 LOGGER = none
-NEEDS = no
+ENABLE_NEEDS = no
 
 all:
 
@@ -44,17 +44,19 @@ config:
 		ln -s ./run-multilog run ; \
 	elif [ $(LOGGER) = svlogd ]; then \
 		rm run ; \
-		ln -s ./run-svlogd run ;\
+		ln -s ./run-svlogd run ; \
 	elif  [ $(LOGGER) = s6-log ]; then \
 		rm run ; \
 		ln -s ./run-s6-log run ; \
 	fi
 	# set dependency switch
-	if [ $(NEEDS) = yes ]; then \
+	if [ $(ENABLE_NEEDS) = yes ]; then \
 		echo 1 > "$(DESTDIR)$(SRVDIR)/.env/NEEDS_ENABLED" ; \
 	fi
 
 check:
+	cd $(DESTDIR)$(SRVDIR)/.bin ; \
+	./show-settings
 
 uninstall:
 	rm -r $(DESTDIR)$(DOCDIR)
