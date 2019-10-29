@@ -60,3 +60,5 @@ check:
 
 uninstall:
 	rm -r $(DESTDIR)$(DOCDIR)
+	@echo "The service directories in $(DESTDIR)$(SRVDIR) have not been removed."
+	@echo "Please remove them manually if they are not needed and not under supervision."
