@@ -6,6 +6,7 @@ exec 2>&1
 # shim our support tools into the path relative to the definition
 PATH=$PWD/../.bin:$PATH
 
+# checks required permissions and creates some missing directories
 postfix check || exit 1
 
 # $DAEMON, $DAEMONOPTS and $PRELAUNCH are defined in the local ./env diretory
