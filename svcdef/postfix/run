@@ -1,5 +1,13 @@
 #!/bin/sh
-# This script was borrowed from the runit-for-lfs project.
+
+# redirect stderr to stdout
 exec 2>&1
-/usr/sbin/postfix check || exit 1
-exec /usr/lib/postfix/master
+
+# shim our support tools into the path relative to the definition
+PATH=$PWD/../.bin:$PATH
+
+# checks required permissions and creates some missing directories
+postfix check || exit 1
+
+# $DAEMON, $DAEMONOPTS and $PRELAUNCH are defined in the local ./env diretory
+exec envdir ../.env envdir ./env sh -c 'exec $PRELAUNCH $DAEMON $DAEMONOPTS'
