@@ -1,6 +1,7 @@
 # Welcome to supervision-scripts
 ![GitHub](https://img.shields.io/github/license/apayne/supervision-scripts?style=flat-square)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/apayne/supervision-scripts)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/aaa7d890858f44eda5a394947eb4a638)](https://www.codacy.com/manual/avery.p.payne/supervision-scripts?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=apayne/supervision-scripts&amp;utm_campaign=Badge_Grade)
 
 ## License #
 
