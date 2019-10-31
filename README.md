@@ -1,5 +1,5 @@
 # Welcome to supervision-scripts
-
+![GitHub](https://img.shields.io/github/license/apayne/supervision-scripts?color=blue&style=flat-square)
 
 ## License #
 
